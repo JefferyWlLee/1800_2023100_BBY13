@@ -9,7 +9,6 @@ List team members and/or short bio's here...
 * Jeen Namkung
 * Yousuf Rabani - Chem Eng undergraduate, got into programming 6 months ago
 * Jeffery Lee - 1 Year plus co-op in CNC Machining
-* ...
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
