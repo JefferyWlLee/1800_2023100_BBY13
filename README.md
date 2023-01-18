@@ -1,8 +1,7 @@
 # Project Title
 
 ## 1. Project Description
-State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.  
-This browser based web application to ... 
+This is a browser based webb application that helps people avoid situations where they end up without essential supplies or basic needs during extreme weather events
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
