@@ -1,1 +1,24 @@
+.bg-info {
+    background-color: #EAF4F4 !important;     /* some secondary colour */
+}
 
+.navbar-light .navbar-brand {
+    color: #6B9080;                           /* contrast to secondary colour */
+}
+
+.btn-primary {
+    color: #6B9080;                           /* contrast to secondary colour */
+    font-size: 150%;
+    background-color: #EAF4F4;                /* some secondary colour */
+    border-color: #A4C3B2;                    /* some accent colour */
+    border-width: thick
+}
+
+body {
+    background-color: #F6FFF8;                /* some primary colour */
+}
+
+.navbar-brand{
+    font-family: 'Itim', cursive;
+    font-size: 2.25rem;
+}
