@@ -25,4 +25,21 @@ body {
     font-size: 2.25rem;
     color: white;
 }
+/* footer css starts here*/
+footer{
+    display: grid;
+    grid-template-rows: 40% 40% 20%;
+}
+#center-footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+#one-sentence, #follow-us, #contact-info{
+    text-align: center;
+}
+#logo-img{
+    height:33%;
+    width: 33%;
+    margin:0;
+}
 
