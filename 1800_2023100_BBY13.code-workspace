@@ -7,5 +7,7 @@
 			"path": "../../demo06"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "1800_2023100_BBY13"
+	}
 }
