@@ -18,6 +18,7 @@
 
 body {
     background-color: #F6FFF8;                /* some primary colour */
+    margin:0 auto;
 }
 
 .navbar-brand{
@@ -41,5 +42,13 @@ footer{
     height:33%;
     width: 33%;
     margin:0;
+}
+
+.card-img-top{
+    height:300px
+    
+}
+.margins{
+    margin:0 auto;
 }
 
