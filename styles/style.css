@@ -29,7 +29,7 @@ body {
 /* footer css starts here*/
 footer{
     display: grid;
-    grid-template-rows: 40% 40% 20%;
+    grid-template-rows: 10% 10% 5%;
 }
 #center-footer{
     display: grid;
@@ -39,7 +39,7 @@ footer{
     text-align: center;
 }
 #logo-img{
-    height:33%;
+    height:100%;
     width: 33%;
     margin:0;
 }
