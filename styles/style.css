@@ -28,8 +28,8 @@ body {
 }
 /* footer css starts here*/
 footer{
-    display: grid;
-    grid-template-rows: 10% 10% 5%;
+    background-color: purple;
+    font-size: 10pt;
 }
 #center-footer{
     display: grid;
@@ -37,11 +37,23 @@ footer{
 }
 #one-sentence, #follow-us, #contact-info{
     text-align: center;
+    font-family: 'Itim', cursive;
+    color: white;
 }
+
+#copyright{
+    font-family: 'Itim', cursive;
+    color: white;
+}
+
 #logo-img{
-    height:100%;
-    width: 33%;
-    margin:0;
+    margin-top: 15px;
+    height: 50px;
+    width: 50px;
+}
+
+#follow-us, #contact-info{
+    margin-top: 20px;
 }
 
 .card-img-top{
@@ -52,5 +64,7 @@ footer{
     margin:0 auto;
 }
 
-
-
+.snslogo-img{
+    height: 30px;
+    width: 30px;
+}
