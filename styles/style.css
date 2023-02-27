@@ -73,3 +73,19 @@ footer{
     height: 30px;
     width: 30px;
 }
+
+/* user profile css */
+#userprofile{
+    text-align: center;
+}
+
+#userprofile > div{
+    margin: 30px;
+    font-family: 'Itim', cursive;
+}
+
+#userprofile-img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
