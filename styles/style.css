@@ -19,6 +19,9 @@
 body {
     background-color: #F6FFF8;                /* some primary colour */
     margin:0 auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .navbar-brand{
@@ -88,4 +91,13 @@ footer{
     height: 100px;
     width: 100px;
     border-radius: 50%;
+}
+
+/* Login page related CSS */
+#loginContainer{
+    text-align: center;
+}
+
+.loginPage-footer {
+    margin-top: auto;
 }
