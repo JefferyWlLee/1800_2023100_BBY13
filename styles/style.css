@@ -40,12 +40,12 @@ footer{
 }
 #one-sentence, #follow-us, #contact-info{
     text-align: center;
-    font-family: 'Itim', cursive;
+    font-family: 'Roboto', sans-serif;
     color: white;
 }
 
 #copyright{
-    font-family: 'Itim', cursive;
+    font-family: 'Roboto', sans-serif;
     color: white;
 }
 
@@ -84,7 +84,7 @@ footer{
 
 #userprofile > div{
     margin: 30px;
-    font-family: 'Itim', cursive;
+    font-family: 'Roboto', sans-serif;
 }
 
 #userprofile-img{
