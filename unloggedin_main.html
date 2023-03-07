@@ -11,7 +11,7 @@
 
     <!-- Bootstrap Library CSS CDN go here -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Boostrap Library JS CDN  go here -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -20,12 +20,12 @@
 
     <!-- Other libraries go here -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <!-- Link to styles of your own -->
@@ -34,40 +34,24 @@
 </head>
 
 <body>
-  <template id="postTemplate">
-    <div class="card py-2 mx-2" style="width: 18rem">
-        <img class="card-image card-img-top" src=" ..." alt="..." />
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-length">placeholder</p>
-            <br />
-            <p class="card-text">
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-            </p>
-            <a class="btn btn-primary card-href">Read more ...</a>
-        </div>
-    </div>
-</template>
+    <!-- nav bar -->
+    <nav id="navbarPlaceholder"></nav>
 
-    
-    <nav id="topBar" class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="./images/hand.svg.svg" height="36">
-                Here 2 Share</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="col d-flex justify-content-end" id="navbarSupportedContent">
-                <form class="d-flex">
-                    <button type="button" class="btn btn-info btn-lg px-4 gap-3" ><a href="loginPage.html">Login/Signup</a></button>
-                </form>
+    <template id="postTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem">
+            <img class="card-image card-img-top" src=" ..." alt="..." />
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-length">placeholder</p>
+                <br />
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn-primary card-href">Read more ...</a>
             </div>
         </div>
-    </nav>
+    </template>
 
     <div class="px-4 py-5 my-5 text-center">
         <img class="d-block mx-auto mb-4" src="./images/hand.svg.svg" alt="" width="72" height="57">
@@ -75,22 +59,22 @@
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">Join a community of generous helpers and receive or give help today!</p>
             <h2>Life is better, together.</h2>
-            
+
         </div>
     </div>
 
     <div class="container">
-      <h1>Some popular posts</h1>
-      <!-- Here is the container for cards  -->
-      <div class="container">
-          <div id="posts-go-here" class="row row-cols-auto">
-          </div>
-      </div>
-</div>
+        <h1>Some popular posts</h1>
+        <!-- Here is the container for cards  -->
+        <div class="container">
+            <div id="posts-go-here" class="row row-cols-auto">
+            </div>
+        </div>
+    </div>
 
     <!-- copyright footer -->
     <nav id="footerPlaceholder"></nav>
- 
+
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
