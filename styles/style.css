@@ -101,3 +101,51 @@ footer{
 .loginPage-footer {
     margin-top: auto;
 }
+
+/* CSS related to user profile page */
+
+#editBtn-Container{
+    display: flex;
+    justify-content: center;
+}
+
+
+#editBtn-UserProfile, #confirmChangesBtn{
+    width: 150px;
+    height: 30px;
+    border: 2px solid purple;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    transition: 0.6s all;
+    border-radius: 12px;
+}
+
+#editBtn-UserProfile:hover, #confirmChangesBtn:hover{
+    background-color: purple;
+    color: white;
+    cursor: pointer;
+}
+
+#editBtn-UserProfile:active, #confirmChangesBtn:active {
+    background-color: white;
+    color: purple;
+}
+
+#myName, #myLocation {
+    width: 420px;
+    height: 25px;
+    padding-left: 8px;
+    margin-bottom: 10px;
+}
+
+#hiddenForm{
+    display: none;
+
+}
+
+#editForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
