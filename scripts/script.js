@@ -28,6 +28,24 @@ function flipEditForm(){
     hiddenForm.style.display = "block";
 }
 
+function confirmChanges_Clicked (){
+    let userNameChange = document.getElementById('myName').value;
+    let userLocationChange = document.getElementById('myLocation').value;
+
+    let userName = document.getElementById('userName');
+    let userLocation = document.getElementById('userLocation');
+    userName.textContent = userNameChange;
+    userLocation.innerText = userLocationChange;
+
+    let hiddenForm = document.getElementById('hiddenForm');
+    hiddenForm.style.display = "none";
+
+}
+
+var confirmChangesBtn =  document.getElementById('confirmChangesBtn');
+confirmChangesBtn.addEventListener('click', confirmChanges_Clicked);
+
+
 
 // This section deals with posting on the main page
 
