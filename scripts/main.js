@@ -2,23 +2,25 @@ function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("postTemplate");
 
     db.collection(collection).get()   //the collection called "hikes"
-        .then(allPosts=> {
+        .then(allPosts => {
             //var i = 1;  //Optional: if you want to have a unique ID for each hike
             allPosts.forEach(doc => { //iterate thru each doc
                 var title = doc.data().title;       // get value of the "name" key
                 var description = doc.data().description;  // get value of the "details" key
 								var location = doc.data().location;    //get unique ID to each hike to be used for fetching right image
-                var time = doc.data().time_posted; //gets the length field
+                var time = doc.data().time_posted; //gets firebase time stamp
                 var docID = doc.id;
-                var owner = doc.data().owner;
+                var owner = doc.data().owner; //gets user.uid
+                let image = doc.data().image; // gets image url
                 let newcard = cardTemplate.content.cloneNode(true);
-
+                let date = new Date(time.seconds*1000);
                 //update title and text and image
                 newcard.querySelector('.card-title').innerHTML = title;
-                newcard.querySelector('.card-length').innerHTML = time;
+                newcard.querySelector('.card-length').innerHTML = date;
                 newcard.querySelector('.card-text').innerHTML = description;
+                newcard.querySelector('.card-image').src = image;
                 // newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg`; //Example: NV01.jpg
-                newcard.querySelector('a').href = "eachHike.html?docID="+docID;
+                // newcard.querySelector('a').href = "eachHike.html?docID="+docID;
 
                 //Optional: give unique ids to all elements for future use
                 // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
