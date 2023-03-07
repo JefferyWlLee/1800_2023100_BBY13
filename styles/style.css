@@ -118,6 +118,7 @@ footer{
     padding-bottom: 2px;
     transition: 0.6s all;
     border-radius: 12px;
+    margin-top: 12px;
 }
 
 #editBtn-UserProfile:hover, #confirmChangesBtn:hover{
@@ -131,6 +132,10 @@ footer{
     color: purple;
 }
 
+#imageFile {
+    width: 100px;    
+}
+
 #myName, #myLocation {
     width: 420px;
     height: 25px;
@@ -140,7 +145,6 @@ footer{
 
 #hiddenForm{
     display: none;
-
 }
 
 #editForm{
