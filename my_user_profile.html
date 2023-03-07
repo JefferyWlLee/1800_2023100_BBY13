@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Here2Share</title>
+    <title>My Profile</title>
     <meta name="comp1800" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -39,9 +39,21 @@
     <!-- user profile -->
     <div id="userprofile">
         <div><img id="userprofile-img" src="https://dummyimage.com/600x400/000/fff" alt="user image"></div>
-        <div><p>Name</p></div>
+        <div><p id="userName">Name</p></div>
+        <div id="userLocation">Location</div>
         <div><a>Review</a></div>
-        <div><a>Edit</a></div>
+        <div id="editBtn-Container">
+            <div id="editBtn-UserProfile">Edit Profile</div>
+        </div>
+        <div id="hiddenForm">
+            <form id="editForm" action="">
+                <label for="myName">Name: </label>
+                <input type="text" id="myName">
+                <label for="myLocation">Location:</label>
+                <input type="text" id="myLocation">
+                <button type="button" id="confirmChangesBtn">Confirm Changes</button>
+            </form>
+        </div>
     </div>
 
     <!-- copyright footer -->
