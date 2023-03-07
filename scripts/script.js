@@ -26,6 +26,20 @@ userProfileEdit.addEventListener("click", flipEditForm);
 function flipEditForm(){
     let hiddenForm = document.getElementById('hiddenForm');
     hiddenForm.style.display = "block";
+
+    const imageInput = document.getElementById('imageFile');
+    const userImageElement = document.getElementById('userprofile-img');
+
+imageInput.addEventListener("change", function() {
+    const file = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function(){
+        userImageElement.src = reader.result;
+    })
+
+    reader.readAsDataURL(file);
+})
 }
 
 function confirmChanges_Clicked (){
@@ -44,6 +58,7 @@ function confirmChanges_Clicked (){
 
 var confirmChangesBtn =  document.getElementById('confirmChangesBtn');
 confirmChangesBtn.addEventListener('click', confirmChanges_Clicked);
+
 
 
 
