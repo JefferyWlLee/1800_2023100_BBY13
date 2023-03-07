@@ -19,6 +19,15 @@ function insertName() {
 }
 insertName(); //run the function
 
+// This section deals with making changes in user profile page
+var userProfileEdit = document.querySelector('#editBtn-UserProfile');
+userProfileEdit.addEventListener("click", flipEditForm);
+
+function flipEditForm(){
+    let hiddenForm = document.getElementById('hiddenForm');
+    hiddenForm.style.display = "block";
+}
+
 
 // This section deals with posting on the main page
 
