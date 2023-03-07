@@ -21,13 +21,21 @@
     <!-- Other libraries go here -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
 
 </head>
 
 <body>
-
+    
   
     <nav id="navbarPlaceholder"></nav>
     
@@ -56,22 +64,22 @@
     </div>
     <form style="margin-left: 10px; margin-right: 10px;">
         
-        <div class="input-group mb-3">
-        <input type="file" class="form-control" id="inputGroupFile02">
-        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+        <div class="container py-3">
+        <input type="file" id="mypic-input" accept="image/*" />
+        <img id="mypic-goes-here" width="100" height="100" />
       </div>
     <div class="mb-3">
-    <input class="form-control" type="text" placeholder="Name of Item" aria-label="default input example">
+    <input id="title" class="form-control" type="text" placeholder="Title" aria-label="default input example">
     </div>
     <div class="mb-3">
-              <input class="form-control" type="text" placeholder="Amoount of Item" aria-label="default input example">
+              <input id="location" class="form-control" type="text" placeholder="Location" aria-label="default input example">
     </div>
     <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="details on why you're making this post" id="floatingTextarea2" style="height: 100px"></textarea>
+        <textarea id="description" class="form-control" placeholder="details on why you're making this post" id="floatingTextarea2" style="height: 100px"></textarea>
         <label for="floatingTextarea2">Description</label>
       </div>
     <div class="mb-3">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary" onclick="submitPost()">Submit</button>
     </div>
     </form>
     
@@ -80,8 +88,10 @@
 
     <!-- copyright footer -->
     <nav id="footerPlaceholder"></nav>
- 
+    <script src="./scripts/firebaseAPI_here2share.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/SubmitPost.js"></script>
+    
 </body>
 
 </html>
