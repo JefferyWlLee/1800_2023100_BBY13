@@ -12,18 +12,14 @@ function populateUserInfo() {
                 .then(userDoc => {
                     //get the data fields of the user
                     var userName = userDoc.data().name;
-                    var userSchool = userDoc.data().school;
-                    var userCity = userDoc.data().city;
+                    var userLocation = userDoc.data().location;
 
                     //if the data fields are not empty, then write them in to the form.
                     if (userName != null) {
                         document.getElementById("nameInput").value = userName;
                     }
-                    if (userSchool != null) {
-                        document.getElementById("schoolInput").value = userSchool;
-                    }
-                    if (userCity != null) {
-                        document.getElementById("cityInput").value = userCity;
+                    if (userLocation != null) {
+                        document.getElementById("cityInput").value = userLocation;
                     }
                 })
         } else {
@@ -42,11 +38,11 @@ function editUserInfo() {
 
  function saveUserInfo() {
     userName = document.getElementById('myName').value;
-    userCity = document.getElementById('myLocation').value;
+    userLocation = document.getElementById('myLocation').value;
 
     currentUser.update({
         name: userName,
-        location: userCity
+        location: userLocation
     })
     .then(() => {
         console.log("Document successfully updated!");
