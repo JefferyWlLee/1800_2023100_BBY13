@@ -1,22 +1,26 @@
 function insertName() {
     firebase.auth().onAuthStateChanged(user => {
-        // Check if a user is signed in:
-        if (user) {
-            // Do something for the currently logged-in user here: 
-            console.log(user.uid); //print the uid in the browser console
-            console.log(user.displayName);  //print the user name in the browser console
-            user_Name = user.displayName;
-
-            //method #1:  insert with html only
-            //document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
-            //method #2:  insert using jquery
-            $("#name-goes-here").text(user_Name); //using jquery
-
-        } else {
-            // No user is signed in.
-        }
+      if (user) {
+        // Get a reference to the Firestore database
+        const db = firebase.firestore();
+        
+        // Get the user document from Firestore
+        db.collection("users").doc(user.uid).get().then(doc => {
+          if (doc.exists) {
+            // Display the user name in the #name-goes-here element
+            const user_name = doc.data().name;
+            $("#name-goes-here").text(user_name);
+          } else {
+            console.log("No such document!");
+          }
+        }).catch(error => {
+          console.log("Error getting document:", error);
+        });
+      } else {
+        // No user is signed in.
+      }
     });
-}
+  }
 insertName(); //run the function
 
 function displayCardsDynamically(collection) {
