@@ -44,7 +44,7 @@
         <div id="userLocation">Location</div>
         <div><a>Review</a></div>
         <div id="editBtn-Container">
-            <div id="editBtn-UserProfile">Edit Profile</div>
+            <div id="editBtn-UserProfile" onclick="editUserInfo()">Edit Profile</div>
         </div>
         <div id="hiddenForm">
             <form id="editForm" action="">
@@ -55,7 +55,7 @@
                 <label for="imageFile">Select your profile picture (JPEG only)</label>
                 <input type="file" accept="img/jpeg" id="imageFile">
 
-                <button type="button"  id="confirmChangesBtn">Confirm Changes</button>
+                <button type="button"  id="confirmChangesBtn" onclick="saveUserInfo()">Confirm Changes</button>
 
             </form>
         </div>
@@ -67,6 +67,7 @@
     <script src="./scripts/firebaseAPI_here2share.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/profile.js"></script>
 </body>
 
 </html>

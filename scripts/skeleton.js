@@ -4,7 +4,7 @@
 //---------------------------------------------------
 function loadSkeleton(){
     console.log($('#navbarPlaceholder').load('./text/loggedin_nav.html'));
-    console.log($('#navbarPlaceholder').load('./text/unloggedin_nav.html'));
+    console.log($('#unlognavbarPlaceholder').load('./text/unloggedin_nav.html'));
     console.log($('#footerPlaceholder').load('./text/footer.html'));
 }
 loadSkeleton();  //invoke the function
