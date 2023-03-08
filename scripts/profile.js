@@ -54,3 +54,4 @@ function editUserInfo() {
 
     document.getElementById('personalInfoFields').disabled = true; 
 }
+
