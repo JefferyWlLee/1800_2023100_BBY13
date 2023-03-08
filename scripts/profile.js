@@ -13,19 +13,23 @@ function populateUserInfo() {
                     //get the data fields of the user
                     var userName = userDoc.data().name;
                     var userLocation = userDoc.data().location;
+                    document.getElementById("name-goes-here").innerHTML = userName;
+                    document.getElementById("location-goes-here").innerHTML = userLocation;
 
                     //if the data fields are not empty, then write them in to the form.
-                    if (userName != null) {
-                        document.getElementById("nameInput").value = userName;
-                    }
-                    if (userLocation != null) {
-                        document.getElementById("cityInput").value = userLocation;
-                    }
+                    // if (userName != null) {
+                    //     document.getElementById("nameInput").value = userName;
+                    // }
+                    // if (userLocation != null) {
+                    //     document.getElementById("cityInput").value = userLocation;
+                    // }
                 })
         } else {
             // No user is signed in.
             console.log ("No user is signed in");
         }
+
+        
     });
 }
 

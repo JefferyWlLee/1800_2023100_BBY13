@@ -27,6 +27,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
@@ -41,8 +42,8 @@
     <div id="userprofile">
         <div><img id="userprofile-img" src="https://dummyimage.com/600x400/000/fff" alt="user image"></div>
         <div id="users-go-here"></div>
-        <div><p id="userName">Name</p></div>
-        <div id="userLocation">Location</div>
+        <div><p id="userName">Name: <span id="name-goes-here"></span></p></div>
+        <div id="userLocation">Location: <span id="location-goes-here"></span></div>
         <div><a>Review</a></div>
 
         <div id="editBtn-Container">
@@ -50,7 +51,7 @@
         </div>
         <div id="hiddenForm">
             <form id="editForm" action="">
-                <label for="myName">Name: </label>
+                <label for="myName">Name:</label>
                 <input type="text" id="myName">
                 <label for="myLocation">Location:</label>
                 <input type="text" id="myLocation">
