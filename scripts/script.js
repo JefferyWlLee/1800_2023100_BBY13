@@ -169,8 +169,8 @@ function displayCardsDynamically(collection) {
                 var location = doc.data().location;
                 let newcard = cardTemplate.content.cloneNode(true);
 
-                newcard.querySelector('#userName').innerHTML = name;
-                newcard.querySelector('#userLocation').innerHTML = location;
+                newcard.querySelector('#userName').innerHTML = "Name: " + name;
+                newcard.querySelector('#userLocation').innerHTML = "Location: " + location;
                 document.getElementById(collection + "-go-here").appendChild(newcard);
             })
         })

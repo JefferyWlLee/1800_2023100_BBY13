@@ -154,3 +154,20 @@ footer{
     justify-content: center;
     align-items: center;
 }
+
+/** This section is for contact page */
+#contact-Content {
+    height: 80vh;
+}
+
+#contact-Content > div {
+    margin-left: 30px;
+    font-size: 16pt;
+}
+
+/** This section is for dropdown menu*/
+
+#navDropDown > li > button > a {
+    text-decoration: none;
+    color: black;
+}
