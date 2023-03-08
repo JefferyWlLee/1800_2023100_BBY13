@@ -24,26 +24,26 @@ insertName(); //run the function
 var userProfileEdit = document.querySelector('#editBtn-UserProfile');
 userProfileEdit.addEventListener("click", flipEditForm);
 
-function flipEditForm(){
+function flipEditForm() {
     let hiddenForm = document.getElementById('hiddenForm');
     hiddenForm.style.display = "block";
 
     const imageInput = document.getElementById('imageFile');
     const userImageElement = document.getElementById('userprofile-img');
 
-imageInput.addEventListener("change", function() {
-    const file = imageInput.files[0];
-    const reader = new FileReader();
+    imageInput.addEventListener("change", function () {
+        const file = imageInput.files[0];
+        const reader = new FileReader();
 
-    reader.addEventListener("load", function(){
-        userImageElement.src = reader.result;
+        reader.addEventListener("load", function () {
+            userImageElement.src = reader.result;
+        })
+
+        reader.readAsDataURL(file);
     })
-
-    reader.readAsDataURL(file);
-})
 }
 
-function confirmChanges_Clicked (){
+function confirmChanges_Clicked() {
     let userNameChange = document.getElementById('myName').value;
     let userLocationChange = document.getElementById('myLocation').value;
 
@@ -57,7 +57,7 @@ function confirmChanges_Clicked (){
 
 }
 
-var confirmChangesBtn =  document.getElementById('confirmChangesBtn');
+var confirmChangesBtn = document.getElementById('confirmChangesBtn');
 confirmChangesBtn.addEventListener('click', confirmChanges_Clicked);
 
 
@@ -66,39 +66,46 @@ confirmChangesBtn.addEventListener('click', confirmChanges_Clicked);
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("postTemplate");
 
-    db.collection(collection).get()   //the collection called "hikes"
+    db.collection(collection).get()
         .then(allPosts => {
-            //var i = 1;  //Optional: if you want to have a unique ID for each hike
-            allPosts.forEach(doc => { //iterate thru each doc
-                var title = doc.data().title;       // get value of the "name" key
-                var description = doc.data().description;  // get value of the "details" key
-								var location = doc.data().location;    //get unique ID to each hike to be used for fetching right image
-                var time = doc.data().time_posted; //gets firebase time stamp
-                var docID = doc.id; //gets doc id
-                var owner = doc.data().owner; //gets user.uid
-                let image = doc.data().image; // gets image url
-                let newcard = cardTemplate.content.cloneNode(true); // references and clones card template
-                let date = new Date(time.seconds*1000); // formats time stamp into a date and time
-                //update title and text and image
+            allPosts.forEach(doc => {
+                var title = doc.data().title;
+                var description = doc.data().description;
+                var location = doc.data().location;
+                var time = doc.data().time_posted;
+                var docID = doc.id;
+                var owner = doc.data().owner;
+                let image = doc.data().image;
+                let newcard = cardTemplate.content.cloneNode(true);
+                let date = new Date(time.seconds * 1000);
+
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-length').innerHTML = date;
                 newcard.querySelector('.card-text').innerHTML = description;
                 newcard.querySelector('.card-image').src = image;
-                // newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg`; //Example: NV01.jpg
-                // newcard.querySelector('a').href = "eachHike.html?docID="+docID;
 
-                //Optional: give unique ids to all elements for future use
-                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
-
-                //attach to gallery, Example: "hikes-go-here"
                 document.getElementById(collection + "-go-here").appendChild(newcard);
-
-                //i++;   //Optional: iterate variable to serve as unique ID
-                
             })
         })
-        
+
 }
 displayCardsDynamically("posts");
+
+function displayCardsDynamically(collection) {
+    let cardTemplate = document.getElementById("userprofile");
+
+    db.collection(collection).get()
+        .then(allUsers=> {
+            allUsers.forEach(doc => {
+                var name = doc.data().name;
+                var location = doc.data().location;
+                let newcard = cardTemplate.content.cloneNode(true);
+
+                newcard.querySelector('#userName').innerHTML = "Name: " + name;
+                newcard.querySelector('#userLocation').innerHTML = "Location: " + location;
+                document.getElementById(collection + "-go-here").appendChild(newcard);
+            })
+        })
+}
+
+displayCardsDynamically("users");
