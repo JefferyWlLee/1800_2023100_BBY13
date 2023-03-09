@@ -1,4 +1,6 @@
 
+
+
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("postTemplate");
     
@@ -43,12 +45,3 @@ function displayCardsDynamically(collection) {
         
 }
 displayCardsDynamically("posts");
-
-function displayPostUserName(owner){
-    db.collection("users").doc(owner).get().then(userDoc => {
-        //get the data fields of the user
-        userName = userDoc.data().name;
-        return userName;
-})
-
-}
