@@ -1,6 +1,7 @@
+
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("postTemplate");
-
+    
     db.collection(collection).get()   //the collection called "hikes"
         .then(allPosts => {
             //var i = 1;  //Optional: if you want to have a unique ID for each hike
@@ -14,26 +15,40 @@ function displayCardsDynamically(collection) {
                 let image = doc.data().image; // gets image url
                 let newcard = cardTemplate.content.cloneNode(true); // references and clones card template
                 let date = new Date(time.seconds*1000); // formats time stamp into a date and time
+                var userName = displayPostUserName(owner);
                 //update title and text and image
-                newcard.querySelector('.card-title').innerHTML = title;
-                newcard.querySelector('.card-length').innerHTML = date;
-                newcard.querySelector('.card-text').innerHTML = description;
-                newcard.querySelector('.card-image').src = image;
-                // newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg`; //Example: NV01.jpg
-                // newcard.querySelector('a').href = "eachHike.html?docID="+docID;
+                db.collection("users").doc(owner).get().then(userDoc => {
+                    //get the data fields of the user
+                    userName = userDoc.data().name;
+                    newcard.querySelector('.card-title').innerHTML = title;
+                    newcard.querySelector('.card-length').innerHTML = date;
+                    newcard.querySelector('.card-text').innerHTML = userName;
+                    newcard.querySelector('.card-image').src = image;
+                    // newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg`; //Example: NV01.jpg
+                    // newcard.querySelector('a').href = "eachHike.html?docID="+docID;
 
-                //Optional: give unique ids to all elements for future use
-                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
+                    //Optional: give unique ids to all elements for future use
+                    // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
+                    // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
+                    // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
 
-                //attach to gallery, Example: "hikes-go-here"
-                document.getElementById(collection + "-go-here").appendChild(newcard);
+                    //attach to gallery, Example: "hikes-go-here"
+                    document.getElementById(collection + "-go-here").appendChild(newcard);
 
-                //i++;   //Optional: iterate variable to serve as unique ID
+                    //i++;   //Optional: iterate variable to serve as unique ID
+                 })
                 
             })
         })
         
 }
 displayCardsDynamically("posts");
+
+function displayPostUserName(owner){
+    db.collection("users").doc(owner).get().then(userDoc => {
+        //get the data fields of the user
+        userName = userDoc.data().name;
+        return userName;
+})
+
+}
