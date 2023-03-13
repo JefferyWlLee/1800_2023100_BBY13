@@ -57,7 +57,8 @@ function updatePost(){
     db.collection("posts").doc(postId).update({
         title: titletxt,
         location: locationtxt,
-        description: descriptiontxt
+        description: descriptiontxt,
+        time_posted: firebase.firestore.FieldValue.serverTimestamp()
     })
     uploadPic();
 }
