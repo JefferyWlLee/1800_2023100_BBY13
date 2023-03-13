@@ -63,5 +63,5 @@ function updatePost(){
     if (document.getElementById("mypic-input").value != ""){
         uploadPic();
     }
-    
+    window.location.href = "ThankYou.html";
 }

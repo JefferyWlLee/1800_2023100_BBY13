@@ -62,6 +62,7 @@ function uploadPic(postDocID){
             })
             .then(function(){
                 console.log("added pic URL to firebase")
+                window.location.href = "ThankYou.html";
             })
         })
     })
