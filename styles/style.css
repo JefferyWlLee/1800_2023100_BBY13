@@ -7,6 +7,9 @@
     width:40vw;
     
 }
+#edit-button{
+    display:none;
+}
 
 #topBar {
     background-color: purple !important;

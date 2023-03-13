@@ -1,6 +1,7 @@
 function displayHikeInfo() {
     let params = new URL( window.location.href ); //get URL of search bar
     let ID = params.searchParams.get( "docID" ); //get value for key "id"
+    localStorage.setItem('postID', ID);
     console.log( ID );
 
    
@@ -31,3 +32,34 @@ function displayHikeInfo() {
         } );
 }
 displayHikeInfo();
+
+function assessCurrentUser() {
+    var ID = localStorage.getItem("postID");
+    firebase.auth().onAuthStateChanged(user => {
+        // Check if a user is signed in:
+       db.collection("posts").doc(ID).get().then(
+            userDoc => {
+                var postOwner = userDoc.data().owner;
+                console.log(postOwner);
+                if (user) {
+                    var currentUser = user.uid;
+                    if (currentUser == postOwner){
+                         
+                        document.getElementById("edit-button").setAttribute("style", "display:inline;");
+                    }
+                   
+
+                } else {
+                    
+                // No user is signed in.
+                }
+            }
+        )
+        
+    });
+}
+assessCurrentUser(); //run the function
+
+function redirect(){
+    window.location.href = 'editPost.html';
+}
