@@ -17,10 +17,10 @@ function displayCardsDynamically(collection) {
                 let image = doc.data().image; // gets image url
                 let newcard = cardTemplate.content.cloneNode(true); // references and clones card template
                 let date = new Date(time.seconds*1000); // formats time stamp into a date and time
-                var userName = displayPostUserName(owner);
-                //update title and text and image
+                var userName;
+                
                 db.collection("users").doc(owner).get().then(userDoc => {
-                    //get the data fields of the user
+                    //get username of whoever made the post 
                     userName = userDoc.data().name;
                     newcard.querySelector('.card-title').innerHTML = title;
                     newcard.querySelector('.card-length').innerHTML = date;
@@ -28,10 +28,7 @@ function displayCardsDynamically(collection) {
                     newcard.querySelector('.card-image').src = image;
                     newcard.querySelector('a').href = "each_post.html?docID="+docID;
 
-                    //Optional: give unique ids to all elements for future use
-                    // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                    // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-                    // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
+                   
 
                     //attach to gallery, Example: "hikes-go-here"
                     document.getElementById(collection + "-go-here").appendChild(newcard);

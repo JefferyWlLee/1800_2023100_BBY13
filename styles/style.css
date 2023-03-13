@@ -3,6 +3,11 @@
     color: white;                           /* contrast to secondary colour */
 }
 
+.post-img{
+    width:40vw;
+    
+}
+
 #topBar {
     background-color: purple !important;
     color: white; 
