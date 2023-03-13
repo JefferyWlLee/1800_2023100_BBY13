@@ -1,5 +1,5 @@
 var postId = localStorage.getItem("postID");
-
+var imageFile;
 function fillForm(id){
     db.collection("posts").doc(id).get().then(doc =>{
         document.getElementById("title").value = doc.data().title;
@@ -9,7 +9,7 @@ function fillForm(id){
     })
 }
 fillForm(postId);
-var imageFile;
+
 function listenFileSelect(){
     let fileInput = document.getElementById("mypic-input");
     const image = document.getElementById("mypic-goes-here");
@@ -60,5 +60,8 @@ function updatePost(){
         description: descriptiontxt,
         time_posted: firebase.firestore.FieldValue.serverTimestamp()
     })
-    uploadPic();
+    if (document.getElementById("mypic-input").value != ""){
+        uploadPic();
+    }
+    
 }
