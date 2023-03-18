@@ -1,5 +1,4 @@
 function submitPost(){
-    alert("SUBMIT POST METHOD HAS BEEN TRIGGERED");
     //checks if user is logged in
     firebase.auth().onAuthStateChanged(function(user){
         if(user){
@@ -7,13 +6,22 @@ function submitPost(){
             let titletxt = document.getElementById("title").value;
             let locationtxt = document.getElementById("location").value;
             let descriptiontxt = document.getElementById("description").value;
+            if(document.getElementById('option1').checked) {
+                var help = "wants to help";
+              }else if(document.getElementById('option2').checked) {
+                var help= "help wanted";
+              } else {
+                alert("ERROR, HELP OR RECEIVE NOT SELECTED PLEASE SELECT ONE");
+                return;
+              }
             //inserting text inputs into new instance of posts collection
             db.collection("posts").add({
                 owner: user.uid,
                 description: descriptiontxt,
                 location: locationtxt,
                 title: titletxt,
-                time_posted: firebase.firestore.FieldValue.serverTimestamp()
+                time_posted: firebase.firestore.FieldValue.serverTimestamp(),
+                helping: help
                 //then runs the upload pic javascript
             }).then(doc =>{
                 console.log("Post uploaded");

@@ -17,16 +17,18 @@ function displayCardsDynamically(collection) {
                 let image = doc.data().image; // gets image url
                 let newcard = cardTemplate.content.cloneNode(true); // references and clones card template
                 let date = new Date(time.seconds*1000); // formats time stamp into a date and time
-                var userName;
-                
+                var helping = doc.data().helping; //is the poster looking for help or giving help?
+                newcard.querySelector('.card-title').innerHTML = title;
+                newcard.querySelector('.card-length').innerHTML = date;
+                newcard.querySelector('.card-image').src = image;
+                newcard.querySelector('.card-help').innerHTML = helping;
+                newcard.querySelector('a').href = "each_post.html?docID="+docID;
                 db.collection("users").doc(owner).get().then(userDoc => {
                     //get username of whoever made the post 
-                    userName = userDoc.data().name;
-                    newcard.querySelector('.card-title').innerHTML = title;
-                    newcard.querySelector('.card-length').innerHTML = date;
-                    newcard.querySelector('.card-text').innerHTML = userName;
-                    newcard.querySelector('.card-image').src = image;
-                    newcard.querySelector('a').href = "each_post.html?docID="+docID;
+                    var userName = userDoc.data().name;
+                    
+                    newcard.querySelector('.card-text').innerHTML = "Posted By: " + userName;
+
 
                    
 
