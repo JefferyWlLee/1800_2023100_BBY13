@@ -41,38 +41,30 @@ var currentUser;
 
 function populateUserInfo() {
     firebase.auth().onAuthStateChanged(user => {
-        // Check if user is signed in:
         if (user) {
-
-            //go to the correct user document by referencing to the user uid
-            currentUser = db.collection("users").doc(user.uid)
-            //get the document for current user.
-            currentUser.get()
-                .then(userDoc => {
-                    //get the data fields of the user
-                    var userName = userDoc.data().name;
-                    var userLocation = userDoc.data().location;
-                    document.getElementById("name-goes-here").innerHTML = userName;
-                    document.getElementById("location-goes-here").innerHTML = userLocation;
-
-                    //if the data fields are not empty, then write them in to the form.
-                    // if (userName != null) {
-                    //     document.getElementById("nameInput").value = userName;
-                    // }
-                    // if (userLocation != null) {
-                    //     document.getElementById("cityInput").value = userLocation;
-                    // }
-                })
+            const currentUserRef = db.collection("users").doc(user.uid);
+            currentUserRef.get().then(userDoc => {
+                const userName = userDoc.data().name;
+                const userLocation = userDoc.data().location;
+                const userProfileImg = userDoc.data().profileimg;
+                document.getElementById("name-goes-here").innerHTML = userName;
+                document.getElementById("location-goes-here").innerHTML = userLocation;
+                const image = document.getElementById("userprofile-img");
+                if (image) {
+                    image.src = userProfileImg;
+                } else {
+                    console.error("Image element not found");
+                }
+            });
         } else {
-            // No user is signed in.
             console.log("No user is signed in");
         }
-
-
     });
 }
 
-//call the function to run it 
+
+
+
 populateUserInfo();
 
 function editUserInfo() {
@@ -82,15 +74,44 @@ function editUserInfo() {
 function saveUserInfo() {
     userName = document.getElementById('myName').value;
     userLocation = document.getElementById('myLocation').value;
+    imageFile = document.getElementById('imageFile').files[0];
 
-    currentUser.update({
-        name: userName,
-        location: userLocation
-    })
-        .then(() => {
-            console.log("Document successfully updated!");
-        })
+    const currentUserRef = db.collection('users').doc(currentUser.id);
+
+    const storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(`profile-images/${currentUser.id}/${imageFile.name}`);
+    fileRef.put(imageFile).then(() => {
+        console.log('File uploaded successfully.');
+
+        fileRef.getDownloadURL().then((url) => {
+
+            const updatedData = {
+                name: userName,
+                location: userLocation,
+                profileimg: url
+            };
+
+            currentUserRef.update(updatedData).then(() => {
+                console.log("Document successfully updated!");
+            });
+        });
+    });
 
     document.getElementById('personalInfoFields').disabled = true;
 }
 
+
+// pull other user's profile but need id
+
+// function populateUserInfo(userId) {
+//     db.collection("users").doc(userId).get()
+//       .then(userDoc => {
+//         var userName = userDoc.data().name;
+//         var userLocation = userDoc.data().location;
+//         document.getElementById("name-goes-here").innerHTML = userName;
+//         document.getElementById("location-goes-here").innerHTML = userLocation;
+//       })
+//       .catch(error => {
+//         console.log("Error fetching user data:", error);
+//       });
+//   }
