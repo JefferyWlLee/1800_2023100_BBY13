@@ -165,13 +165,28 @@ footer{
 
 /** This section is for contact page */
 #contact-Content {
-    height: 80vh;
-}
-
-#contact-Content > div {
-    margin-left: 30px;
-    font-size: 16pt;
-}
+    margin: 50px auto;
+    width: 80%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  .contact-h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .contact-p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .contact-a {
+    color: #00a1ff;
+    text-decoration: none;
+  }
+  .contact-a:hover {
+    text-decoration: underline;
+  }
 
 /** This section is for dropdown menu*/
 
