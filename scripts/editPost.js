@@ -42,6 +42,7 @@ function uploadPic(){
             })
             .then(function(){
                 console.log("added pic URL to firebase")
+                window.location.href = "ThankYou.html";
             })
         })
     })
@@ -60,8 +61,12 @@ function updatePost(){
         description: descriptiontxt,
         time_posted: firebase.firestore.FieldValue.serverTimestamp()
     })
-    if (document.getElementById("mypic-input").value != ""){
+
+        if (document.getElementById("mypic-input").value != ""){
         uploadPic();
+    } else{
+         window.location.href = "ThankYou.html";
     }
-    window.location.href = "ThankYou.html";
-}
+    }
+    
+   
