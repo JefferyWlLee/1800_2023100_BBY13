@@ -105,6 +105,10 @@ footer{
 
 /* CSS related to user profile page */
 
+#userprofile {
+    height: 75vh;
+}
+
 #editBtn-Container{
     display: flex;
     justify-content: center;
