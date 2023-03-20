@@ -1,31 +1,9 @@
-function insertName() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        // Get a reference to the Firestore database
-        const db = firebase.firestore();
-        
-        // Get the user document from Firestore
-        db.collection("users").doc(user.uid).get().then(doc => {
-          if (doc.exists) {
-            // Display the user name in the #name-goes-here element
-            const user_name = doc.data().name;
-            $("#name-goes-here").text(user_name);
-          } else {
-            console.log("No such document!");
-          }
-        }).catch(error => {
-          console.log("Error getting document:", error);
-        });
-      } else {
-        // No user is signed in.
-      }
-    });
-  }
-insertName(); //run the function
+
+
 
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("postTemplate");
-
+    
     db.collection(collection).get()   //the collection called "hikes"
         .then(allPosts => {
             //var i = 1;  //Optional: if you want to have a unique ID for each hike
@@ -39,26 +17,50 @@ function displayCardsDynamically(collection) {
                 let image = doc.data().image; // gets image url
                 let newcard = cardTemplate.content.cloneNode(true); // references and clones card template
                 let date = new Date(time.seconds*1000); // formats time stamp into a date and time
-                //update title and text and image
+                var helping = doc.data().helping; //is the poster looking for help or giving help?
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-length').innerHTML = date;
-                newcard.querySelector('.card-text').innerHTML = description;
                 newcard.querySelector('.card-image').src = image;
-                // newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg`; //Example: NV01.jpg
-                // newcard.querySelector('a').href = "eachHike.html?docID="+docID;
+                newcard.querySelector('.card-help').innerHTML = helping;
+                newcard.querySelector('a').href = "each_post.html?docID="+docID;
+                db.collection("users").doc(owner).get().then(userDoc => {
+                    //get username of whoever made the post 
+                    var userName = userDoc.data().name;
+                    
+                    newcard.querySelector('.card-text').innerHTML = "Posted By: " + userName;
 
-                //Optional: give unique ids to all elements for future use
-                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
 
-                //attach to gallery, Example: "hikes-go-here"
-                document.getElementById(collection + "-go-here").appendChild(newcard);
+                   
 
-                //i++;   //Optional: iterate variable to serve as unique ID
+                    //attach to gallery, Example: "hikes-go-here"
+                    document.getElementById(collection + "-go-here").appendChild(newcard);
+
+                    //i++;   //Optional: iterate variable to serve as unique ID
+                 })
                 
             })
         })
         
 }
 displayCardsDynamically("posts");
+
+function insertName() {
+    firebase.auth().onAuthStateChanged(user => {
+        // Check if a user is signed in:
+        if (user) {
+            // Do something for the currently logged-in user here: 
+            console.log(user.uid); //print the uid in the browser console
+            console.log(user.displayName);  //print the user name in the browser console
+            user_Name = user.displayName;
+
+            //method #1:  insert with html only
+            //document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
+            //method #2:  insert using jquery
+            $("#name-goes-here").text(user_Name); //using jquery
+
+        } else {
+            // No user is signed in.
+        }
+    });
+}
+insertName(); //run the function

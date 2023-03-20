@@ -36,11 +36,25 @@
 <body>
     <!-- nav bar -->
     <nav id="navbarPlaceholder"></nav>
-
+    <div class="container">
+        <h1><span id="title">title</span></h1>
+        <div class="position-relative">
+            <img class="post-img responsive" src="" alt="post photo">
+            <button id="edit-button" class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="redirect()" >edit</button>
+           <p id="time-here"></p>
+           <p id="name-here"></p>
+        </div>
+        <div id="description-here">
+            
+        </div>
+        <div id="location-here"></div>
+    </div>
+    
     <!-- copyright footer -->
     <nav id="footerPlaceholder"></nav>
     <script src="./scripts/firebaseAPI_Here2Share.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/each_post.js"></script>
 </body>
 
 </html>
