@@ -96,9 +96,9 @@ footer{
     font-family: 'Roboto', sans-serif;
 }
 
-#userprofile-img{
-    height: 100px;
-    width: 100px;
+#userprofile-img, #otherUserprofile-img{
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
 }
 
@@ -211,13 +211,23 @@ footer{
     padding: 10px;
     border-radius: 40%;
     height: 80px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease-in-out;
 }
 
 #thumbUp {
     background-color: rgb(13, 240, 13);
     margin-right: 50px;
+    padding-left: 15px;
 }
+
+#thumbUp:hover, #thumbDown:hover {
+    transform: scale(1.05);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+  }
 
 #thumbDown{
     background-color: rgb(215, 12, 12);
+    padding-right: 15px;
 }
+
