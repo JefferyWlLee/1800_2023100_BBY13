@@ -22,7 +22,10 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-length').innerHTML = date;
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-help').innerHTML = helping;
-                newcard.querySelector('a').href = "each_post.html?docID="+docID;
+
+                // Changed querySelector paramter from 'a' to '.card-Button' - Yousuf
+                newcard.querySelector('.card-Button').href = "each_post.html?docID="+docID;
+                newcard.getElementById('otherUser_page').href = "other_userProfile.html";
                 db.collection("users").doc(owner).get().then(userDoc => {
                     //get username of whoever made the post 
                     var userName = userDoc.data().name;
