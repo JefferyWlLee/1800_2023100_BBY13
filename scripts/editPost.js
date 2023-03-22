@@ -52,6 +52,7 @@ function uploadPic(){
 }
 
 function updatePost(){
+    document.getElementById("load").setAttribute("style", "display:inline;")
     let titletxt = document.getElementById("title").value;
     let locationtxt = document.getElementById("location").value;
     let descriptiontxt = document.getElementById("description").value;

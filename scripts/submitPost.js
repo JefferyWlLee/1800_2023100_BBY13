@@ -1,4 +1,6 @@
 function submitPost(){
+    document.getElementById("submit").disabled = true;
+    document.getElementById("load").setAttribute("style", "display:inline;")
     //checks if user is logged in
     firebase.auth().onAuthStateChanged(function(user){
         if(user){
@@ -12,6 +14,8 @@ function submitPost(){
                 var help= "help wanted";
               } else {
                 alert("ERROR, HELP OR RECEIVE NOT SELECTED PLEASE SELECT ONE");
+                document.getElementById("submit").disabled = false;
+                document.getElementById("load").setAttribute("style", "display:none;")
                 return;
               }
             //inserting text inputs into new instance of posts collection
@@ -30,6 +34,8 @@ function submitPost(){
             })
         } else {
             console.log("ERROR USER NOT LOGGED IN")
+            document.getElementById("submit").disabled = false;
+            document.getElementById("load").setAttribute("style", "display:none;")
         }
     })
     
