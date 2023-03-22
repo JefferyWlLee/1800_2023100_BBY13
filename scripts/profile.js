@@ -62,13 +62,10 @@ function populateUserInfo() {
     });
 }
 
-
-
-
 populateUserInfo();
 
 function editUserInfo() {
-    document.getElementById('personalInfoFields').disabled = false;
+    // document.getElementById('personalInfoFields').disabled = false;
 }
 
 function saveUserInfo() {
