@@ -14,6 +14,7 @@ function displayCardsDynamically(collection) {
                 var time = doc.data().time_posted; //gets firebase time stamp
                 var docID = doc.id; //gets doc id
                 var owner = doc.data().owner; //gets user.uid
+                
                 let image = doc.data().image; // gets image url
                 let newcard = cardTemplate.content.cloneNode(true); // references and clones card template
                 let date = new Date(time.seconds*1000); // formats time stamp into a date and time
@@ -49,8 +50,8 @@ function insertName() {
         // Check if a user is signed in:
         if (user) {
             // Do something for the currently logged-in user here: 
-            console.log(user.uid); //print the uid in the browser console
-            console.log(user.displayName);  //print the user name in the browser console
+            // console.log(user.uid); //print the uid in the browser console
+            // console.log(user.displayName);  //print the user name in the browser console
             user_Name = user.displayName;
 
             //method #1:  insert with html only
