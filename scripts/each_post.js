@@ -19,7 +19,7 @@ function displayHikeInfo() {
             let date = new Date(postedTime.seconds*1000); // formats time stamp into a date and time
             db.collection("users").doc(postOwner).get().then(userDoc => {
                 var username = userDoc.data().name;
-                document.getElementById("name-here").innerHTML = "Posted By " + username;
+                document.getElementById("name-here").innerHTML = "Posted By <a href=\"other_userProfile.html\">" + username + "</a>";
                 document.getElementById("description-here").innerHTML = postDescription;
                 document.getElementById("location-here").innerHTML = "Location: " + postLocation;
                 document.getElementById("time-here").innerHTML = date;
