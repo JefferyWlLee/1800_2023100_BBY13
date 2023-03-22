@@ -12,9 +12,8 @@ function displayPostInfo() {
             var posttitle = doc.data().title;
             var postDescription = doc.data().description;
             var postLocation = doc.data().location;
-            var postedTime = doc.data().time_posted;
+            var postedTime = doc.data().time_posted.toDate().toLocaleDateString();
             var postOwner = doc.data().owner;
-            let date = new Date(postedTime.seconds*1000);
             db.collection("users").doc(postOwner).get().then(userDoc => {
                 var username = userDoc.data().name;
                 let currentUser = firebase.auth().currentUser;
@@ -27,7 +26,7 @@ function displayPostInfo() {
                 document.getElementById("name-here").innerHTML = "Posted By <a href=\"" + postOwnerLink + "\">" + username + "</a>";
                 document.getElementById("description-here").innerHTML = postDescription;
                 document.getElementById("location-here").innerHTML = "Location: " + postLocation;
-                document.getElementById("time-here").innerHTML = date;
+                document.getElementById("time-here").innerHTML = postedTime;
                 document.getElementById( "title" ).innerHTML = posttitle;
                 let imgEvent = document.querySelector( ".post-img" );
                 imgEvent.src = postImage;
