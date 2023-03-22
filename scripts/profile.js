@@ -62,24 +62,32 @@ function populateUserInfo() {
     });
 }
 
-
-
-
 populateUserInfo();
 
 function editUserInfo() {
-    document.getElementById('personalInfoFields').disabled = false;
+    // document.getElementById('personalInfoFields').disabled = false;
 }
 
 function saveUserInfo() {
-    userName = document.getElementById('myName').value;
-    userLocation = document.getElementById('myLocation').value;
-    imageFile = document.getElementById('imageFile').files[0];
+    const currentUser = firebase.auth().currentUser;
+    if (!currentUser) {
+        console.error('No current user found.');
+        return;
+    }
 
-    const currentUserRef = db.collection('users').doc(currentUser.id);
+    const userName = document.getElementById('myName').value;
+    const userLocation = document.getElementById('myLocation').value;
+    const imageFile = document.getElementById('imageFile').files[0];
+    if (!imageFile) {
+        console.error('No image selected.');
+        alert("Choose profile image");
+        return;
+    }
+
+    const currentUserRef = db.collection('users').doc(currentUser.uid);
 
     const storageRef = firebase.storage().ref();
-    const fileRef = storageRef.child(`profile-images/${currentUser.id}/${imageFile.name}`);
+    const fileRef = storageRef.child(`profile-images/${currentUser.uid}/${imageFile.name}`);
     fileRef.put(imageFile).then(() => {
         console.log('File uploaded successfully.');
 
@@ -93,12 +101,19 @@ function saveUserInfo() {
 
             currentUserRef.update(updatedData).then(() => {
                 console.log("Document successfully updated!");
+            }).catch((error) => {
+                console.error('Error updating document:', error);
             });
+        }).catch((error) => {
+            console.error('Error getting download URL:', error);
         });
+    }).catch((error) => {
+        console.error('Error uploading file:', error);
     });
 
-    document.getElementById('personalInfoFields').disabled = true;
+    document.getElementById('personalInfoFields').setAttribute('disabled', true);
 }
+
 
 
 // pull other user's profile but need id
