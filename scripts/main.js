@@ -9,15 +9,15 @@ function displayCardsDynamically(collection) {
             //var i = 1;  //Optional: if you want to have a unique ID for each post
             allPosts.forEach(doc => { //iterate thru each doc
                 var title = doc.data().title;       // get value of the "name" key
-                var time = doc.data().time_posted; //gets firebase time stamp
+                var time = doc.data().time_posted.toDate().toLocaleDateString();; //gets firebase time stamp
                 var docID = doc.id; //gets doc id
                 var owner = doc.data().owner; //gets user.uid
                 let image = doc.data().image; // gets image url
                 let newcard = cardTemplate.content.cloneNode(true); // references and clones card template
-                let date = new Date(time.seconds*1000); // formats time stamp into a date and time
+                // let date = new Date(time.seconds*1000); // formats time stamp into a date and time
                 var helping = doc.data().helping; //is the poster looking for help or giving help?
                 newcard.querySelector('.card-title').innerHTML = title;
-                newcard.querySelector('.card-length').innerHTML = date;
+                newcard.querySelector('.card-length').innerHTML = time;
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-help').innerHTML = helping;
                 // Changed querySelector paramter from 'a' to '.card-Button' - Yousuf
