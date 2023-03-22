@@ -6,15 +6,12 @@ function displayCardsDynamically(collection) {
     
     db.collection(collection).get()   //the collection called "hikes"
         .then(allPosts => {
-            //var i = 1;  //Optional: if you want to have a unique ID for each hike
+            //var i = 1;  //Optional: if you want to have a unique ID for each post
             allPosts.forEach(doc => { //iterate thru each doc
                 var title = doc.data().title;       // get value of the "name" key
-                var description = doc.data().description;  // get value of the "details" key
-								var location = doc.data().location;    //get unique ID to each hike to be used for fetching right image
                 var time = doc.data().time_posted; //gets firebase time stamp
                 var docID = doc.id; //gets doc id
                 var owner = doc.data().owner; //gets user.uid
-                
                 let image = doc.data().image; // gets image url
                 let newcard = cardTemplate.content.cloneNode(true); // references and clones card template
                 let date = new Date(time.seconds*1000); // formats time stamp into a date and time
@@ -23,7 +20,6 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-length').innerHTML = date;
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-help').innerHTML = helping;
-
                 // Changed querySelector paramter from 'a' to '.card-Button' - Yousuf
                 newcard.querySelector('.card-Button').href = "each_post.html?docID="+docID;
                 newcard.getElementById('otherUser_page').href = "other_userProfile.html";
