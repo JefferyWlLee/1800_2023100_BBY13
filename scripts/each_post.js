@@ -51,6 +51,7 @@ function assessCurrentUser() {
                     if (currentUser == postOwner){
                          
                         document.getElementById("edit-button").setAttribute("style", "display:inline;");
+                        document.getElementById("delete-button").setAttribute("style", "display:inline;");
                     }
                    
 
@@ -67,4 +68,18 @@ assessCurrentUser(); //run the function
 
 function redirect(){
     window.location.href = 'editPost.html';
+}
+
+function deletePost() {
+    if (confirm("Are You Sure you Want to Delete?")){
+        let params = new URL( window.location.href );
+        let ID = params.searchParams.get( "docID" );
+        db.collection("posts").doc(ID).delete().then(() => {
+            console.log("Document successfully deleted!");
+            window.location.href = "thankyou.html";
+        })
+        
+    } else {
+        return;
+    }
 }
