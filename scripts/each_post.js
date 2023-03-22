@@ -1,37 +1,42 @@
-function displayHikeInfo() {
-    let params = new URL( window.location.href ); //get URL of search bar
-    let ID = params.searchParams.get( "docID" ); //get value for key "id"
+function displayPostInfo() {
+    let params = new URL( window.location.href );
+    let ID = params.searchParams.get( "docID" );
     localStorage.setItem('postID', ID);
     console.log( ID );
 
-   
     db.collection( "posts" )
         .doc( ID )
         .get()
         .then( doc => {
-            //getting all the details about the post
             var postImage = doc.data().image;
             var posttitle = doc.data().title;
             var postDescription = doc.data().description;
             var postLocation = doc.data().location;
             var postedTime = doc.data().time_posted;
             var postOwner = doc.data().owner;
-            let date = new Date(postedTime.seconds*1000); // formats time stamp into a date and time
+            let date = new Date(postedTime.seconds*1000);
             db.collection("users").doc(postOwner).get().then(userDoc => {
                 var username = userDoc.data().name;
-                document.getElementById("name-here").innerHTML = "Posted By <a href=\"other_userProfile.html?userId=" + postOwner + "\">" + username + "</a>";
+                let currentUser = firebase.auth().currentUser;
+                let postOwnerLink = "";
+                if (postOwner === currentUser.uid) {
+                    postOwnerLink = "my_user_profile.html?userId=" + currentUser.uid;
+                } else {
+                    postOwnerLink = "other_userProfile.html?userId=" + postOwner;
+                }
+                document.getElementById("name-here").innerHTML = "Posted By <a href=\"" + postOwnerLink + "\">" + username + "</a>";
                 document.getElementById("description-here").innerHTML = postDescription;
                 document.getElementById("location-here").innerHTML = "Location: " + postLocation;
                 document.getElementById("time-here").innerHTML = date;
-                 document.getElementById( "title" ).innerHTML = posttitle;
+                document.getElementById( "title" ).innerHTML = posttitle;
                 let imgEvent = document.querySelector( ".post-img" );
                 imgEvent.src = postImage;
             })
-            
-           
         } );
 }
-displayHikeInfo();
+
+displayPostInfo();
+
 
 function assessCurrentUser() {
     var ID = localStorage.getItem("postID");
