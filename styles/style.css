@@ -232,7 +232,9 @@ footer{
     padding-right: 15px;
 }
 
-
+#delete-button {
+    display:none;
+}
 
 #load{
     display:none;
