@@ -60,13 +60,15 @@ function updatePost(){
         location: locationtxt,
         description: descriptiontxt,
         time_posted: firebase.firestore.FieldValue.serverTimestamp()
-    })
-
+    }).then(function (e) {
         if (document.getElementById("mypic-input").value != ""){
         uploadPic();
     } else{
          window.location.href = "ThankYou.html";
     }
+    })
+
+        
     }
     
    
