@@ -52,24 +52,28 @@ function uploadPic(){
 }
 
 function updatePost(){
-    document.getElementById("load").setAttribute("style", "display:inline;")
-    let titletxt = document.getElementById("title").value;
-    let locationtxt = document.getElementById("location").value;
-    let descriptiontxt = document.getElementById("description").value;
-    db.collection("posts").doc(postId).update({
+    if(confirm("Are You Sure You Want to Save?")){
+        document.getElementById("load").setAttribute("style", "display:inline;")
+        let titletxt = document.getElementById("title").value;
+        let locationtxt = document.getElementById("location").value;
+        let descriptiontxt = document.getElementById("description").value;
+        db.collection("posts").doc(postId).update({
         title: titletxt,
         location: locationtxt,
         description: descriptiontxt,
         time_posted: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(function (e) {
+        }).then(function (e) {
         if (document.getElementById("mypic-input").value != ""){
         uploadPic();
     } else{
          window.location.href = "ThankYou.html";
     }
     })
+    }
+    
+}
+    
 
         
-    }
     
    
