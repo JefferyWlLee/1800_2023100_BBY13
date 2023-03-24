@@ -22,21 +22,22 @@ function displayCardsDynamically(collection) {
                     //get username of whoever made the post 
                     var userName = userDoc.data().name;
                     let currentUser = firebase.auth().currentUser;
-                    
+
                     let nameElement = newcard.querySelector('.card-text');
                     let nameLinkElement = document.createElement('a');
                     nameLinkElement.innerHTML = "Posted By: " + userName;
-                    
+
                     //Check if the current user is the owner of the post
                     if (owner === currentUser.uid) {
                         nameLinkElement.href = "my_user_profile.html";
-                    } 
-                    
+                    } else {
+                        nameLinkElement.href = "other_userProfile.html?userId=" + owner;
+                    }
+
                     nameElement.innerHTML = "";
                     nameElement.appendChild(nameLinkElement);
                     
-                    
-                    newcard.querySelector('.card-text').innerHTML = "Posted By: " + userName;
+                    // newcard.querySelector('.card-text').innerHTML = "Posted By: " + userName;
 
                     /* Note to Jeff: This line adds a click event listeenr to each p element created which calls 
                        saveUserNameToLocalStorage function when clicked - Yousuf */  
@@ -88,3 +89,4 @@ function saveUserNameToLocalStorage(event) {
     const userName = postText.slice(userNameStartIndex);
     localStorage.setItem('userName', userName);
   }
+
