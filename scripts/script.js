@@ -17,7 +17,6 @@ const thumb_Down = document.getElementById("thumbDown");
 // }
 
 
-
 /* This loops through each document in the users collection, checking if verified field exists, if
    it exists then does nothing if it doesn't creates a field and sets it to false.
    We use it once to add the fields to every user document and afterwards we comment it out in case we need it
@@ -41,3 +40,19 @@ const thumb_Down = document.getElementById("thumbDown");
 //   .catch(error => {
 //     console.error("Error retrieving user documents:", error);
 //   });
+
+
+// Function to add user rating, number of reviews and Reviews field to every user document in users collection
+// Run this in the console to add the fields to the firestore database. 
+function addRatingFieldsToUsersCollection() {
+
+   usersCollection.get().then((querySnapshot) => {
+     querySnapshot.forEach((doc) => {
+       doc.ref.set({
+         rating: 5,
+         "Number of reviews": 0,
+         Reviews: ""
+       }, { merge: true });
+     });
+   });
+ }
