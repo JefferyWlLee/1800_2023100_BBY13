@@ -1,6 +1,3 @@
-
-
-
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("postTemplate");
     
@@ -19,27 +16,32 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-length').innerHTML = time;
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-help').innerHTML = helping;
-                // Changed querySelector paramter from 'a' to '.card-Button' - Yousuf
+                // Changed querySelector paramter from 'a' to '.card-Button' - Yousuf '.card-text'
                 newcard.querySelector('.card-Button').href = "each_post.html?docID="+docID;
-                newcard.getElementById('otherUser_page').href = "other_userProfile.html";
                 db.collection("users").doc(owner).get().then(userDoc => {
                     //get username of whoever made the post 
                     var userName = userDoc.data().name;
+                    let currentUser = firebase.auth().currentUser;
                     
-                    newcard.querySelector('.card-text').innerHTML = "Posted By: " + userName;
-
-
-                   
-
+                    let nameElement = newcard.querySelector('.card-text');
+                    let nameLinkElement = document.createElement('a');
+                    nameLinkElement.innerHTML = "Posted By: " + userName;
+                    
+                    //Check if the current user is the owner of the post
+                    if (owner === currentUser.uid) {
+                        nameLinkElement.href = "my_user_profile.html";
+                    } else {
+                        nameLinkElement.href = "other_userProfile.html?userId=" + owner;
+                    }
+                    
+                    nameElement.innerHTML = "";
+                    nameElement.appendChild(nameLinkElement);
+                    
                     //attach to gallery, Example: "hikes-go-here"
                     document.getElementById(collection + "-go-here").appendChild(newcard);
-
-                    //i++;   //Optional: iterate variable to serve as unique ID
-                 })
-                
+                })              
             })
-        })
-        
+        })       
 }
 displayCardsDynamically("posts");
 
