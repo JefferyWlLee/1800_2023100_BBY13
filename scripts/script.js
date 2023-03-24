@@ -114,4 +114,40 @@ saveUserIdToLocal().then(userId => {
     console.error("Error getting user ID:", error);
   });
 
+
+// This function updates the user profile using the userID to find the user in firestore, check if they have a profileimg field,
+// and then injects that value of the field into the profile image div.src attribute. It does the same for Review field (without 
+// the checking for if it exists) and injects the review into the review div on the page
+  function updateUserProfile() {
+    const userID = localStorage.getItem("userID");
+    const userDocRef = db.collection("users").doc(userID);
+
+    const profileImg = document.getElementById("otherUserprofile-img");
+    const userReviewsDiv = document.getElementById("userReviewDiv");
+  
+    return userDocRef.get()
+      .then(doc => {
+        if (doc.exists) {
+          const profileImgUrl = doc.get("profileimg");
+          if (profileImgUrl) {
+            profileImg.src = profileImgUrl;
+          }
+          const reviews = doc.get("Reviews");
+          userReviewsDiv.textContent = reviews;
+        } else {
+          console.log("No such user document!");
+        }
+      })
+      .catch(error => {
+        console.error("Error getting user document:", error);
+      });
+  }
+  
+  updateUserProfile()
+  .then(() => {
+    console.log("User profile updated!");
+  })
+  .catch(error => {
+    console.error("Error updating user profile:", error);
+  });
  
