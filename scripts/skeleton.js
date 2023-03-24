@@ -8,3 +8,13 @@ function loadSkeleton(){
     console.log($('#footerPlaceholder').load('./text/footer.html'));
 }
 loadSkeleton();  //invoke the function
+
+function logout() {
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        console.log("logging out user");
+        window.location.href = "unloggedin_main.html";
+      }).catch((error) => {
+        // An error happened.
+      });
+}

@@ -65,50 +65,83 @@ function populateUserInfo() {
 populateUserInfo();
 
 function editUserInfo() {
-    // document.getElementById('personalInfoFields').disabled = false;
-}
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          const userId = user.uid;
+          const userDocRef = firebase.firestore().collection('users').doc(userId);
+          
+          userDocRef.get().then(function(doc) {
+            if (doc.exists) {
+              const userData = doc.data();
+              const username = userData.name;
+              const userLocation = userData.location;
+              const userProfilePic = userData.profileimg;
+      
+              document.getElementById('myName').value = username;
+              document.getElementById('myLocation').value = userLocation;
+            } else {
+              console.log("No such document!");
+            }
+          }).catch(function(error) {
+            console.log("Error getting document:", error);
+          });
+        } else {
+          console.log("No user is signed in.");
+        }
+      });
+  }
+  
 
 function saveUserInfo() {
-    userName = document.getElementById('myName').value;
-    userLocation = document.getElementById('myLocation').value;
-    imageFile = document.getElementById('imageFile').files[0];
+    const currentUser = firebase.auth().currentUser;
+    if (!currentUser) {
+        console.error('No current user found.');
+        return;
+    }
 
-    const currentUserRef = db.collection('users').doc(currentUser.id);
+    const currentUserRef = db.collection('users').doc(currentUser.uid);
 
-    const storageRef = firebase.storage().ref();
-    const fileRef = storageRef.child(`profile-images/${currentUser.id}/${imageFile.name}`);
-    fileRef.put(imageFile).then(() => {
-        console.log('File uploaded successfully.');
+    const userName = document.getElementById('myName').value || currentUser.displayName;
+    const userLocation = document.getElementById('myLocation').value || currentUser.location;
+    const imageFile = document.getElementById('imageFile').files[0];
 
-        fileRef.getDownloadURL().then((url) => {
+    if (imageFile) {
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child(`profile-images/${currentUser.uid}/${imageFile.name}`);
+        fileRef.put(imageFile).then(() => {
+            console.log('File uploaded successfully.');
 
-            const updatedData = {
-                name: userName,
-                location: userLocation,
-                profileimg: url
-            };
+            fileRef.getDownloadURL().then((url) => {
 
-            currentUserRef.update(updatedData).then(() => {
-                console.log("Document successfully updated!");
+                const updatedData = {
+                    name: userName,
+                    location: userLocation,
+                    profileimg: url
+                };
+
+                currentUserRef.update(updatedData).then(() => {
+                    console.log("Document successfully updated!");
+                }).catch((error) => {
+                    console.error('Error updating document:', error);
+                });
+            }).catch((error) => {
+                console.error('Error getting download URL:', error);
             });
+        }).catch((error) => {
+            console.error('Error uploading file:', error);
         });
-    });
+    } else {
+        const updatedData = {
+            name: userName,
+            location: userLocation
+        };
 
-    document.getElementById('personalInfoFields').disabled = true;
+        currentUserRef.update(updatedData).then(() => {
+            console.log("Document successfully updated!");
+        }).catch((error) => {
+            console.error('Error updating document:', error);
+        });
+    }
+
+    document.getElementById('personalInfoFields').setAttribute('disabled', true);
 }
-
-
-// pull other user's profile but need id
-
-// function populateUserInfo(userId) {
-//     db.collection("users").doc(userId).get()
-//       .then(userDoc => {
-//         var userName = userDoc.data().name;
-//         var userLocation = userDoc.data().location;
-//         document.getElementById("name-goes-here").innerHTML = userName;
-//         document.getElementById("location-goes-here").innerHTML = userLocation;
-//       })
-//       .catch(error => {
-//         console.log("Error fetching user data:", error);
-//       });
-//   }
