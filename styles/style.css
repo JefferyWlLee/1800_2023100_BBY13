@@ -236,6 +236,18 @@ a.buttons{
     padding-right: 15px;
 }
 
+#starContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.ratingStars {
+    height: 25px;
+}
+
+/* End of section for user profile page CSS */
+
 #delete-button {
     display:none;
 }
