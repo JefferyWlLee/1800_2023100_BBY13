@@ -190,3 +190,38 @@ function handleThumbClick(isThumbUp) {
       }
     });
 }
+
+// This function takes a user rating out of 5, and generates either a full star, half star or hollow star images (up to 5)
+// and injects them into the starContainer div in the user's profile
+function displayStars(rating) {
+  const starContainer = document.getElementById("starContainer");
+
+  // Create full stars
+  const fullStars = Math.floor(rating);
+  for (let i = 0; i < fullStars; i++) {
+    const fullStar = document.createElement("img");
+    fullStar.classList.add("ratingStars");
+    fullStar.src = "./images/fullStar.svg";
+    starContainer.appendChild(fullStar);
+  }
+
+  // Create half stars
+  const hasHalfStar = (rating % 1) >= 0.5;
+  if (hasHalfStar) {
+    const halfStar = document.createElement("img");
+    halfStar.classList.add("ratingStars");
+    halfStar.src = "./images/halfStar.svg";
+    starContainer.appendChild(halfStar);
+  }
+
+  // Create hollow stars
+  const remainingStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+  for (let i = 0; i < remainingStars; i++) {
+    const hollowStar = document.createElement("img");
+    hollowStar.classList.add("ratingStars");
+    hollowStar.src = "./images/fullStarHollow.svg";
+    starContainer.appendChild(hollowStar);
+  }
+}
+
+
