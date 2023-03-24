@@ -4,13 +4,21 @@ const usersCollection = firebase.firestore().collection("users");
 const thumb_Up = document.getElementById("thumbUp");
 const thumb_Down = document.getElementById("thumbDown");
 
-// thumb_Up.addEventListener("click", ()=> {
+thumb_Up.addEventListener("click", ()=> {
+  handleThumbClick(true);
+  hideThumbs();
+});
 
-// });
+thumb_Down.addEventListener("click", ()=> {
+  handleThumbClick(false);
+  hideThumbs();
+});
 
-// function tup_clicked(){
-//    if user
-// }
+//This function is called when thumb up or down is clicked to hide the thumb up or down buttons to prevent repeat voting
+function hideThumbs(){
+  const rateUserElement = document.getElementById("rateUser");
+  rateUserElement.style.display = "none";
+}
 
 // This function has a simple algorithm for calculcating a user's rating (out of 5) based on the number of thumb ups or thumb downs
 // entered as parameter. It returns a num out of 5 rounded to nearest increment. We will use this later on
