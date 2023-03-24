@@ -81,10 +81,9 @@ function saveUserNameToLocalStorage(event) {
     // This targets the clicked p element
     const postElement = event.target;
     const postText = postElement.textContent;
-    const userNameStartIndex = postText.indexOf("Posted by: ") + "Posted by: ".length;
+    const userNameStartIndex = postText.indexOf("Posted by: ") + "Posted by: ".length + 1;
   
     // Slice it to only target the parts AFTER "Posted by " and save it to userName variable
     const userName = postText.slice(userNameStartIndex);
     localStorage.setItem('userName', userName);
-    console.log("user name has been saved to local storage");
   }
