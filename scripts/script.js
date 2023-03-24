@@ -1,4 +1,4 @@
-// Code for reviewing/rating other users
+// ============================Code for reviewing/rating other users (Please don't touch-Yousuf)============================================
 
 const usersCollection = firebase.firestore().collection("users");
 const thumb_Up = document.getElementById("thumbUp");
@@ -12,10 +12,15 @@ const thumb_Down = document.getElementById("thumbDown");
 //    if user
 // }
 
-// function calculate_Rating() {
-//     if tup_clicked()
-// }
+// This function has a simple algorithm for calculcating a user's rating (out of 5) based on the number of thumb ups or thumb downs
+// entered as parameter. It returns a num out of 5 rounded to nearest increment. We will use this later on
+function calculateUserRating(numThumbsUp, numThumbsDown) {
+  const totalVotes = numThumbsUp + numThumbsDown;
+  const thumbsUpPercentage = totalVotes > 0 ? numThumbsUp / totalVotes : 0;
+  const rating = Math.round(thumbsUpPercentage * 10) / 2;
 
+  return rating;
+}
 
 /* This loops through each document in the users collection, checking if verified field exists, if
    it exists then does nothing if it doesn't exist it creates a field and sets it to false.
