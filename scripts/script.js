@@ -83,4 +83,35 @@ function addRatingFieldsToUsersCollection() {
  injectUserNameIntoProfile();
  
 
+ // This function takes the user name saved in local storage, searches our firestore database for matching Name field in a user 
+ // document in the users collection, and saves the id of that user to local storage as "userID"
+ function saveUserIdToLocal() {
+
+  const userName = localStorage.getItem("userName");
+  return db.collection("users")
+    .where("name", "==", userName)
+    .get()
+    .then(querySnapshot => {
+      if (!querySnapshot.empty) {
+        const userId = querySnapshot.docs[0].id;
+        localStorage.setItem("userID", userId);
+        return userId;
+      }
+      return null;
+    })
+    .catch(error => {
+      // This handles any errors that can psosibly occur while querying firestore 
+      console.error("Error getting user ID:", error);
+      return null;
+    });
+}
+
+// Here we call the function when page is loaded
+saveUserIdToLocal().then(userId => {
+    console.log("User ID:", userId);
+    localStorage.setItem("userID", userId);
+  }).catch(error => {
+    console.error("Error getting user ID:", error);
+  });
+
  
