@@ -5,7 +5,7 @@ const thumb_Up = document.getElementById("thumbUp");
 const thumb_Down = document.getElementById("thumbDown");
 
 // thumb_Up.addEventListener("click", ()=> {
-    
+
 // });
 
 // function tup_clicked(){
@@ -76,21 +76,21 @@ function addRatingFieldsToUsersCollection() {
   });
 }
 
- // This function takes the name saved to 'userName' in local storage and sets it as the text content of the p element which displays
- // a user's name on the page. 
+// This function takes the name saved to 'userName' in local storage and sets it as the text content of the p element which displays
+// a user's name on the page. 
 
- function injectUserNameIntoProfile() {
-   const userName = localStorage.getItem('userName');
-   console.log("name saved to local storage: " + userName);
-   const profileNameElement = document.getElementById('otherUserprofile-name');
-   profileNameElement.textContent = userName;
- }
- injectUserNameIntoProfile();
- 
+function injectUserNameIntoProfile() {
+  const userName = localStorage.getItem('userName');
+  console.log("name saved to local storage: " + userName);
+  const profileNameElement = document.getElementById('otherUserprofile-name');
+  profileNameElement.textContent = userName;
+}
+injectUserNameIntoProfile();
 
- // This function takes the user name saved in local storage, searches our firestore database for matching Name field in a user 
- // document in the users collection, and saves the id of that user to local storage as "userID"
- function saveUserIdToLocal() {
+
+// This function takes the user name saved in local storage, searches our firestore database for matching Name field in a user 
+// document in the users collection, and saves the id of that user to local storage as "userID"
+function saveUserIdToLocal() {
 
   const userName = localStorage.getItem("userName");
   return db.collection("users")
@@ -113,46 +113,72 @@ function addRatingFieldsToUsersCollection() {
 
 // Here we call the function when page is loaded
 saveUserIdToLocal().then(userId => {
-    console.log("User ID:", userId);
-    localStorage.setItem("userID", userId);
-  }).catch(error => {
-    console.error("Error getting user ID:", error);
-  });
+  console.log("User ID:", userId);
+  localStorage.setItem("userID", userId);
+}).catch(error => {
+  console.error("Error getting user ID:", error);
+});
 
 
 // This function updates the user profile using the userID to find the user in firestore, check if they have a profileimg field,
 // and then injects that value of the field into the profile image div.src attribute. It does the same for Review field (without 
 // the checking for if it exists) and injects the review into the review div on the page
-  function updateUserProfile() {
-    const userID = localStorage.getItem("userID");
-    const userDocRef = db.collection("users").doc(userID);
+function updateUserProfile() {
+  const userID = localStorage.getItem("userID");
+  const userDocRef = db.collection("users").doc(userID);
 
-    const profileImg = document.getElementById("otherUserprofile-img");
-    const userReviewsDiv = document.getElementById("userReviewDiv");
-  
-    return userDocRef.get()
-      .then(doc => {
-        if (doc.exists) {
-          const profileImgUrl = doc.get("profileimg");
-          if (profileImgUrl) {
-            profileImg.src = profileImgUrl;
-          }
-          const reviews = doc.get("Reviews");
-          userReviewsDiv.textContent = reviews;
-        } else {
-          console.log("No such user document!");
+  const profileImg = document.getElementById("otherUserprofile-img");
+  const userReviewsDiv = document.getElementById("userReviewDiv");
+
+  return userDocRef.get()
+    .then(doc => {
+      if (doc.exists) {
+        const profileImgUrl = doc.get("profileimg");
+        if (profileImgUrl) {
+          profileImg.src = profileImgUrl;
         }
-      })
-      .catch(error => {
-        console.error("Error getting user document:", error);
-      });
-  }
-  
-  updateUserProfile()
+        const reviews = doc.get("Reviews");
+        userReviewsDiv.textContent = reviews;
+      } else {
+        console.log("No such user document!");
+      }
+    })
+    .catch(error => {
+      console.error("Error getting user document:", error);
+    });
+}
+
+updateUserProfile()
   .then(() => {
     console.log("User profile updated!");
-  })
-  .catch(error => {
-    console.error("Error updating user profile:", error);
   });
- 
+
+// This function has boolean paramter, if true, it increments the "ThumbUp-Count" field in the user document on firebase, otherwise
+// it increments the ThumbDown-Count. It then calls calculateUserRating function we defined earlier to calc user rating using these two
+// numbers, it then calls the displayStars function (which we haven't defined yet) to display the rating has stars on the user profile page. 
+function handleThumbClick(isThumbUp) {
+  const userID = localStorage.getItem("userID");
+  const userDocRef = db.collection("users").doc(userID);
+  let numThumbsUp, numThumbsDown;
+  userDocRef.get()
+    .then(doc => {
+      if (doc.exists) {
+        numThumbsUp = doc.get("ThumbUp-Count") || 0;
+        numThumbsDown = doc.get("ThumbDown-Count") || 0;
+
+        if (isThumbUp) {
+          numThumbsUp++;
+          userDocRef.update({ "ThumbUp-Count": numThumbsUp });
+        } else {
+          numThumbsDown++;
+          userDocRef.update({ "ThumbDown-Count": numThumbsDown });
+        }
+
+        const userRating = calculateUserRating(numThumbsUp, numThumbsDown);
+
+        displayStars(userRating);
+      } else {
+        console.log("User document doesnt exist!");
+      }
+    });
+}
