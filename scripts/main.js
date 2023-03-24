@@ -30,9 +30,7 @@ function displayCardsDynamically(collection) {
                     //Check if the current user is the owner of the post
                     if (owner === currentUser.uid) {
                         nameLinkElement.href = "my_user_profile.html";
-                    } else {
-                        nameLinkElement.href = "other_userProfile.html?userId=" + owner;
-                    }
+                    } 
                     
                     nameElement.innerHTML = "";
                     nameElement.appendChild(nameLinkElement);
