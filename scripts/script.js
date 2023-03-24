@@ -18,7 +18,7 @@ const thumb_Down = document.getElementById("thumbDown");
 
 
 /* This loops through each document in the users collection, checking if verified field exists, if
-   it exists then does nothing if it doesn't creates a field and sets it to false.
+   it exists then does nothing if it doesn't exist it creates a field and sets it to false.
    We use it once to add the fields to every user document and afterwards we comment it out in case we need it
    in the future.  
    */
@@ -43,7 +43,7 @@ const thumb_Down = document.getElementById("thumbDown");
 
 
 // Function to add user rating, number of reviews and Reviews field to every user document in users collection
-// Run this in the console to add the fields to the firestore database. 
+// We run this in the console to add the fields to the firestore database. 
 function addRatingFieldsToUsersCollection() {
 
    usersCollection.get().then((querySnapshot) => {
@@ -56,3 +56,17 @@ function addRatingFieldsToUsersCollection() {
      });
    });
  }
+
+ // This function takes the name saved to 'userName' in local storage and sets it as the text content of the p element which displays
+ // a user's name on the page. 
+
+ function injectUserNameIntoProfile() {
+   const userName = localStorage.getItem('userName');
+   console.log("name saved to local storage: " + userName);
+   const profileNameElement = document.getElementById('otherUserprofile-name');
+   profileNameElement.textContent = userName;
+ }
+ injectUserNameIntoProfile();
+ 
+
+ 
