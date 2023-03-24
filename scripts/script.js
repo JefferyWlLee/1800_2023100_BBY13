@@ -45,17 +45,31 @@ const thumb_Down = document.getElementById("thumbDown");
 // Function to add user rating, number of reviews and Reviews field to every user document in users collection
 // We run this in the console to add the fields to the firestore database. 
 function addRatingFieldsToUsersCollection() {
-
-   usersCollection.get().then((querySnapshot) => {
-     querySnapshot.forEach((doc) => {
-       doc.ref.set({
-         rating: 5,
-         "Number of reviews": 0,
-         Reviews: ""
-       }, { merge: true });
-     });
-   });
- }
+  usersCollection.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      const updateObject = {};
+      if (!data.hasOwnProperty('rating')) {
+        updateObject.rating = 5;
+      }
+      if (!data.hasOwnProperty('Number of reviews')) {
+        updateObject['Number of reviews'] = 0;
+      }
+      if (!data.hasOwnProperty('Reviews')) {
+        updateObject.Reviews = "";
+      }
+      if (!data.hasOwnProperty('ThumbUp-Count')) {
+        updateObject['ThumbUp-Count'] = 0;
+      }
+      if (!data.hasOwnProperty('ThumbDown-Count')) {
+        updateObject['ThumbDown-Count'] = 0;
+      }
+      if (Object.keys(updateObject).length > 0) {
+        doc.ref.set(updateObject, { merge: true });
+      }
+    });
+  });
+}
 
  // This function takes the name saved to 'userName' in local storage and sets it as the text content of the p element which displays
  // a user's name on the page. 
