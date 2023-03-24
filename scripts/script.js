@@ -221,6 +221,9 @@ function displayStars(rating) {
     starContainer.appendChild(hollowStar);
   }
 }
+let userRate = getUserRating();
+displayStars(userRate);
+
 
 // This function gets the user rating of a user form firestore databse using the userID stored in local storage,
 // we need it to call the displayStars function when the page is first loaded
