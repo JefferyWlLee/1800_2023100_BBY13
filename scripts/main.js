@@ -30,10 +30,15 @@ function displayCardsDynamically(collection) {
                     //get username of whoever made the post 
                     var userName = userDoc.data().name;
                     
+                    
                     newcard.querySelector('.card-text').innerHTML = "Posted By: " + userName;
 
-
-                   
+                    /* Note to Jeff: This line adds a click event listeenr to each p element created which calls 
+                       saveUserNameToLocalStorage function when clicked - Yousuf */  
+                    newcard.querySelector('.card-text').addEventListener("click",  (event)=> {
+                        saveUserNameToLocalStorage(event);
+                    });
+                    
 
                     //attach to gallery, Example: "hikes-go-here"
                     document.getElementById(collection + "-go-here").appendChild(newcard);
@@ -81,4 +86,5 @@ function saveUserNameToLocalStorage(event) {
     // Slice it to only target the parts AFTER "Posted by " and save it to userName variable
     const userName = postText.slice(userNameStartIndex);
     localStorage.setItem('userName', userName);
+    console.log("user name has been saved to local storage");
   }
