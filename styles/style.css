@@ -87,6 +87,10 @@ footer{
     width: 30px;
 }
 
+a.buttons{
+    text-decoration: none;
+}
+
 /* user profile css */
 #userprofile{
     text-align: center;
