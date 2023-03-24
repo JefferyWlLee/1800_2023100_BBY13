@@ -192,10 +192,10 @@ function handleThumbClick(isThumbUp) {
 }
 
 // This function takes a user rating out of 5, and generates either a full star, half star or hollow star images (up to 5)
-// and injects them into the starContainer div in the user's profile
+// and injects them into the starContainer div in the user's profile.
+// This function is called once when the page is loaded, and once when a user votes by clicking thumb up or down on their profile
 function displayStars(rating) {
   const starContainer = document.getElementById("starContainer");
-
   // Create full stars
   const fullStars = Math.floor(rating);
   for (let i = 0; i < fullStars; i++) {
@@ -204,7 +204,6 @@ function displayStars(rating) {
     fullStar.src = "./images/fullStar.svg";
     starContainer.appendChild(fullStar);
   }
-
   // Create half stars
   const hasHalfStar = (rating % 1) >= 0.5;
   if (hasHalfStar) {
@@ -213,7 +212,6 @@ function displayStars(rating) {
     halfStar.src = "./images/halfStar.svg";
     starContainer.appendChild(halfStar);
   }
-
   // Create hollow stars
   const remainingStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
   for (let i = 0; i < remainingStars; i++) {
@@ -224,4 +222,20 @@ function displayStars(rating) {
   }
 }
 
+// This function gets the user rating of a user form firestore databse using the userID stored in local storage,
+// we need it to call the displayStars function when the page is first loaded
+function getUserRating() {
+  const userID = localStorage.getItem("userID");
+  const userDocRef = db.collection(usersCollection).doc(userID);
+
+  return userDocRef.get()
+    .then(doc => {
+      if (doc.exists) {
+        return doc.get("rating");
+      } else {
+        console.log("user doc doesnt exist");
+        return null;
+      }
+    });
+}
 
