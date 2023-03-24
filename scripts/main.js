@@ -67,3 +67,18 @@ function insertName() {
     });
 }
 insertName(); //run the function
+
+
+/* This function saves the user name of the user clicked upon by targeting the p element that contains the name, 
+targeting everything after "Posted by " and saving it to local storage as 'userName' */
+
+function saveUserNameToLocalStorage(event) {
+    // This targets the clicked p element
+    const postElement = event.target;
+    const postText = postElement.textContent;
+    const userNameStartIndex = postText.indexOf("Posted by ") + "Posted by ".length;
+  
+    // Slice it to only target the parts AFTER "Posted by " and save it to userName variable
+    const userName = postText.slice(userNameStartIndex);
+    localStorage.setItem('userName', userName);
+  }
