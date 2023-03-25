@@ -1,51 +1,94 @@
-function submitPost(){
+function submitPost() {
+    // disable submit button and display loading spinner
     document.getElementById("submit").disabled = true;
-    document.getElementById("load").setAttribute("style", "display:inline;")
-    //checks if user is logged in
-    firebase.auth().onAuthStateChanged(function(user){
-        if(user){
-            //grabbing text inputs
+    document.getElementById("load").setAttribute("style", "display:inline;");
+    
+    // check if user is logged in
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // get values of text inputs
             let titletxt = document.getElementById("title").value;
             let locationtxt = document.getElementById("location").value;
             let descriptiontxt = document.getElementById("description").value;
-            if(document.getElementById('option1').checked) { //checking if help or received has been selected and ending the function if neither has been selected
+            
+            // check if help or receive radio button is selected
+            if (document.getElementById('option1').checked) {
                 var help = "wants to help";
-              }else if(document.getElementById('option2').checked) {
-                var help= "help wanted";
-              } else {
+            } else if (document.getElementById('option2').checked) {
+                var help = "help wanted";
+            } else {
+                // display error message and stop function execution if neither radio button is selected
                 alert("ERROR, HELP OR RECEIVE NOT SELECTED PLEASE SELECT ONE");
                 document.getElementById("submit").disabled = false;
-                document.getElementById("load").setAttribute("style", "display:none;")
-                return;
-              }
-              if (document.getElementById("mypic-input").value == ""){
-                alert("ERROR, NO IMAGE HAS BEEN UPLOADED, PLEASE UPLOAD AN IMAGE")
-                document.getElementById("submit").disabled = false;
-                document.getElementById("load").setAttribute("style", "display:none;")
+                document.getElementById("load").setAttribute("style", "display:none;");
                 return;
             }
-            //inserting text inputs into new instance of posts collection
+            
+            // check if an image has been uploaded
+            if (document.getElementById("mypic-input").value == "") {
+                alert("ERROR, NO IMAGE HAS BEEN UPLOADED, PLEASE UPLOAD AN IMAGE");
+                document.getElementById("submit").disabled = false;
+                document.getElementById("load").setAttribute("style", "display:none;");
+                return;
+            }
+
+            const resultElem = document.getElementById("result-goes-here");
+            const tags = [];
+          
+            for (let i = 0; i < resultElem.children.length; i++) {
+              const childElem = resultElem.children[i];
+              const childId = childElem.id;
+              tags.push(childId);
+            }
+            // console.log(childIds); // prints an array of child element IDs
+
+            // document.getElementById("submit").disabled = false;
+            //     document.getElementById("load").setAttribute("style", "display:none;");
+            // return;
+            // insert text inputs into new instance of "posts" collection in Firestore
             db.collection("posts").add({
                 owner: user.uid,
                 description: descriptiontxt,
                 location: locationtxt,
                 title: titletxt,
                 time_posted: firebase.firestore.FieldValue.serverTimestamp(),
-                helping: help
-                //then runs the upload pic javascript
-            }).then(doc =>{
+                helping: help,
+                tag: tags
+            }).then(doc => {
+
+                 // Get the element with the id "result-goes-here"
+                // var oInput = document.getElementById("result-goes-here");
+                // console.log("oinput" + oInput);
+                // // Loop through all the child nodes of the "result-goes-here" element
+                // for (var ii = 0; ii < oInput.childNodes.length; ii++) {
+                //     // Get the id of the current child node
+                //     var childId = oInput.childNodes[ii].id;
+                //     console.log("ChildId: " + childId); 
+                //     db.collection("posts").doc(doc.id).set({
+                //         tags : firebase.firestore.FieldValue.arrayUnion(childId)
+                //     }, {
+                //         merge: true
+                //     })
+                    
+                // }
+                
                 console.log("Post uploaded");
                 console.log(doc.id);
+                
+                // call uploadPic function with the new post's ID
                 uploadPic(doc.id);
-            })
+            });
+
+
         } else {
-            console.log("ERROR USER NOT LOGGED IN")
+            // display error message if user is not logged in
+            console.log("ERROR USER NOT LOGGED IN");
             document.getElementById("submit").disabled = false;
-            document.getElementById("load").setAttribute("style", "display:none;")
+            document.getElementById("load").setAttribute("style", "display:none;");
         }
-    })
-    
+    });
 }
+
 //universal image file reference
 var imageFile;
 //checks if in image has been chosen and displays it
@@ -93,30 +136,49 @@ function uploadPic(postDocID){
 
 
 
-document.getElementById('demolist').addEventListener("click", addTag);
+// Attach a click event listener to an element with the id "demolist"
+document.getElementById('tagList').addEventListener("click", addTag);
+
+// Initialize a variable i with the value 1
 var i = 1;
-function addTag(e) { 
-    
-    console.log(e.target.innerText) //type the result in the browser console
-//   document.getElementById('dropdownMenuButton1').innerText = e.target.innerText; // shows the result in the drop down
-    let cardTemplate = document.getElementById("tag-template");
-    // document.getElementById("result-goes-here").innerHTML = e.target.innerText; //type the result under the drop down in a different line
-    let newtag = cardTemplate.content.cloneNode(true);
-    newtag.querySelector("#tag").innerText = e.target.innerText;
-    document.getElementById("result-goes-here").appendChild(newtag);
-    document.getElementById("tag").id = "tag" + i;
-    document.getElementById("close").id = "close" + i;
-    document.getElementById("tag" + i).parentNode.id = e.target.innerText;
-    document.getElementById("tag" + i).classList.add(e.target.innerText);
-    console.log(document.getElementById("tag" + i));
-    document.getElementById("close" + i).addEventListener("click", () => {
 
-        document.getElementById(e.target.innerText).remove();
-    })
-    i++;
-    
+// This function is called when the "demolist" element is clicked
+function addTag(e) {
+  // Get the element with the id "result-goes-here"
+  var oInput = document.getElementById('result-goes-here');
+
+  // Loop through all the child nodes of the "result-goes-here" element
+  for (var ii = 0; ii < oInput.childNodes.length; ii++) {
+    // Get the id of the current child node
+    var childId = oInput.childNodes[ii].id;
+    // If a child node with the same text as the clicked element already exists, exit the function
+    if (childId === e.target.innerText) {
+      return;
+    }
+  }
+
+  // Get the element with the id "tag-template"
+  let cardTemplate = document.getElementById("tag-template");
+  // Create a clone of the template
+  let newtag = cardTemplate.content.cloneNode(true);
+  // Set the text of the cloned element to the text of the clicked element
+  newtag.querySelector("#tag").innerText = e.target.innerText;
+  // Append the cloned element to the "result-goes-here" element
+  document.getElementById("result-goes-here").appendChild(newtag);
+  // Set the id of the "tag" element in the cloned element to "tag" + i
+  document.getElementById("tag").id = "tag" + i;
+  // Set the id of the "close" element in the cloned element to "close" + i
+  document.getElementById("close").id = "close" + i;
+  // Set the id of the parent node of the "tag" element in the cloned element to the text of the clicked element
+  document.getElementById("tag" + i).parentNode.id = e.target.innerText;
+  // Add a class to the "tag" element in the cloned element with the text of the clicked element
+  document.getElementById("tag" + i).classList.add(e.target.innerText);
+  // Add a click event listener to the "close" element in the cloned element
+  document.getElementById("close" + i).addEventListener("click", () => {
+    // Remove the parent node of the "tag" element in the cloned element
+    document.getElementById(e.target.innerText).remove();
+  });
+
+  // Increment the variable i
+  i++;
 }
-
-
-
-
