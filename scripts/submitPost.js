@@ -40,6 +40,9 @@ function submitPost() {
               const childId = childElem.id;
               tags.push(childId);
             }
+            if (tags.length == 0){
+                tags.push("");
+            }
             // console.log(childIds); // prints an array of child element IDs
 
             // document.getElementById("submit").disabled = false;

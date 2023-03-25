@@ -18,7 +18,7 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-length').innerHTML = time;
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-help').innerHTML = helping;
-                newcard.querySelector('.tags-go-here').innerHTML = "Tags: " + tags;
+                newcard.querySelector('.tags-go-here').innerHTML = "tags: " + tags;
                 // Changed querySelector paramter from 'a' to '.card-Button' - Yousuf '.card-text'
                 newcard.querySelector('.card-Button').href = "each_post.html?docID="+docID;
                 db.collection("users").doc(owner).get().then(userDoc => {
