@@ -196,49 +196,65 @@ function handleThumbClick(isThumbUp) {
 // This function is called once when the page is loaded, and once when a user votes by clicking thumb up or down on their profile
 function displayStars(rating) {
   const starContainer = document.getElementById("starContainer");
-  // Create full stars
-  const fullStars = Math.floor(rating);
-  for (let i = 0; i < fullStars; i++) {
-    const fullStar = document.createElement("img");
-    fullStar.classList.add("ratingStars");
-    fullStar.src = "./images/fullStar.svg";
-    starContainer.appendChild(fullStar);
-  }
-  // Create half stars
-  const hasHalfStar = (rating % 1) >= 0.5;
-  if (hasHalfStar) {
-    const halfStar = document.createElement("img");
-    halfStar.classList.add("ratingStars");
-    halfStar.src = "./images/halfStar.svg";
-    starContainer.appendChild(halfStar);
-  }
-  // Create hollow stars
-  const remainingStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-  for (let i = 0; i < remainingStars; i++) {
-    const hollowStar = document.createElement("img");
-    hollowStar.classList.add("ratingStars");
-    hollowStar.src = "./images/fullStarHollow.svg";
-    starContainer.appendChild(hollowStar);
+  if (starContainer.childElementCount === 0) {
+    // Create full stars
+    const fullStars = Math.floor(rating);
+    for (let i = 0; i < fullStars; i++) {
+      const fullStar = document.createElement("img");
+      fullStar.classList.add("ratingStars");
+      fullStar.src = "./images/fullStar.svg";
+      starContainer.appendChild(fullStar);
+    }
+    // Create half stars
+    const hasHalfStar = (rating % 1) >= 0.5;
+    if (hasHalfStar) {
+      const halfStar = document.createElement("img");
+      halfStar.classList.add("ratingStars");
+      halfStar.src = "./images/halfStar.svg";
+      starContainer.appendChild(halfStar);
+    }
+    // Create hollow stars
+    const remainingStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    for (let i = 0; i < remainingStars; i++) {
+      const hollowStar = document.createElement("img");
+      hollowStar.classList.add("ratingStars");
+      hollowStar.src = "./images/fullStarHollow.svg";
+      starContainer.appendChild(hollowStar);
+    }
+  } else {
+    while (starContainer.firstChild) {
+      starContainer.removeChild(starContainer.firstChild);
+    }
+    displayStars(rating);
   }
 }
-let userRate = getUserRating();
-displayStars(userRate);
+
 
 
 // This function gets the user rating of a user form firestore databse using the userID stored in local storage,
 // we need it to call the displayStars function when the page is first loaded
 function getUserRating() {
   const userID = localStorage.getItem("userID");
-  const userDocRef = db.collection(usersCollection).doc(userID);
+  const userDocRef = db.collection("users").doc(userID);
 
   return userDocRef.get()
     .then(doc => {
       if (doc.exists) {
-        return doc.get("rating");
+        const numThumbsUp = doc.get("ThumbUp-Count") || 0;
+        const numThumbsDown = doc.get("ThumbDown-Count") || 0;
+        return calculateUserRating(numThumbsUp, numThumbsDown);
       } else {
-        console.log("user doc doesnt exist");
+        console.log("User document doesnt exist!");
         return null;
       }
+    })
+    .catch(error => {
+      console.error("Error getting user document:", error);
+      return null;
     });
 }
+getUserRating().then(userRating => {
+  displayStars(userRating);
+});
+
 

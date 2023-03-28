@@ -246,6 +246,44 @@ a.buttons{
     height: 25px;
 }
 
+#reviewContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+#confirmReview {
+    margin-top: 18px;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #6f42c1;
+    box-shadow: 2px 2px 5px #888888;
+    transition: all 0.3s ease;
+  }
+  
+  #confirmReview:hover {
+    background-color: #2b9348;
+    box-shadow: 3px 3px 6px #888888;
+  }
+
+  #writeReview{
+    padding: 8px;
+  }
+
+  #contactBtn{
+    margin-bottom: 10px;
+  }
+  
+
 /* End of section for user profile page CSS */
 
 #delete-button {
