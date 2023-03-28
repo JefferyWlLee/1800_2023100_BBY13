@@ -221,24 +221,33 @@ function displayStars(rating) {
     starContainer.appendChild(hollowStar);
   }
 }
-let userRate = getUserRating();
-displayStars(userRate);
+
 
 
 // This function gets the user rating of a user form firestore databse using the userID stored in local storage,
 // we need it to call the displayStars function when the page is first loaded
 function getUserRating() {
   const userID = localStorage.getItem("userID");
-  const userDocRef = db.collection(usersCollection).doc(userID);
+  const userDocRef = db.collection("users").doc(userID);
 
   return userDocRef.get()
     .then(doc => {
       if (doc.exists) {
-        return doc.get("rating");
+        const numThumbsUp = doc.get("ThumbUp-Count") || 0;
+        const numThumbsDown = doc.get("ThumbDown-Count") || 0;
+        return calculateUserRating(numThumbsUp, numThumbsDown);
       } else {
-        console.log("user doc doesnt exist");
+        console.log("User document doesnt exist!");
         return null;
       }
+    })
+    .catch(error => {
+      console.error("Error getting user document:", error);
+      return null;
     });
 }
+getUserRating().then(userRating => {
+  displayStars(userRating);
+});
+
 
