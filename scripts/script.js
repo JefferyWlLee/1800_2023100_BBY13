@@ -3,6 +3,7 @@
 const usersCollection = firebase.firestore().collection("users");
 const thumb_Up = document.getElementById("thumbUp");
 const thumb_Down = document.getElementById("thumbDown");
+const reviewContainer = document.getElementById("reviewContainer");
 
 thumb_Up.addEventListener("click", ()=> {
   handleThumbClick(true);
@@ -18,7 +19,6 @@ thumb_Down.addEventListener("click", ()=> {
 
 // This function will add or remove classes to review container depending on which classes it already has.
 // Along with the "transition end" event listener, it craetes a "fade in effect" for the review container element
-const reviewContainer = document.getElementById("reviewContainer");
 function showReviewContainer() {
   if (reviewContainer.classList.contains("form-active")) {
     reviewContainer.classList.remove("form-active");
@@ -186,7 +186,7 @@ updateUserProfile()
 
 // This function has boolean paramter, if true, it increments the "ThumbUp-Count" field in the user document on firebase, otherwise
 // it increments the ThumbDown-Count. It then calls calculateUserRating function we defined earlier to calc user rating using these two
-// numbers, it then calls the displayStars function (which we haven't defined yet) to display the rating has stars on the user profile page. 
+// numbers, it then calls the displayStars function (which we haven't defined yet) to display the rating as stars on the user profile page. 
 function handleThumbClick(isThumbUp) {
   const userID = localStorage.getItem("userID");
   const userDocRef = db.collection("users").doc(userID);
@@ -251,8 +251,6 @@ function displayStars(rating) {
     displayStars(rating);
   }
 }
-
-
 
 // This function gets the user rating of a user form firestore databse using the userID stored in local storage,
 // we need it to call the displayStars function when the page is first loaded
