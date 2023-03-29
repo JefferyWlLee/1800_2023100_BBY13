@@ -26,8 +26,8 @@ function confirmChanges_Clicked() {
 
     let userName = document.getElementById('userName');
     let userLocation = document.getElementById('userLocation');
-    userName.textContent = userNameChange;
-    userLocation.innerText = userLocationChange;
+    userName.textContent = "Name: " + userNameChange;
+    userLocation.innerText = "Location: " + userLocationChange;
 
     let hiddenForm = document.getElementById('hiddenForm');
     hiddenForm.style.display = "none";
