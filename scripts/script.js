@@ -16,13 +16,26 @@ thumb_Down.addEventListener("click", ()=> {
   showReviewContainer()
 });
 
-//This function changes the CSS display property of review container element to flex after a 0.4s delay
+// This function will add or remove classes to review container depending on which classes it already has.
+// Along with the transition end even listener, it craetes a "fade in effect" for the review container element
+const reviewContainer = document.getElementById("reviewContainer");
 function showReviewContainer() {
-  const reviewContainer = document.getElementById("reviewContainer");
-  setTimeout(() => {
-    reviewContainer.style.display = "flex";
-  }, 400); 
+  if (reviewContainer.classList.contains("form-active")) {
+    reviewContainer.classList.remove("form-active");
+    reviewContainer.classList.add('form-transition');
+    reviewContainer.classList.add('form-hidden');
+} else {
+    reviewContainer.classList.add('form-visible');
+    reviewContainer.classList.add('form-transition');
+    reviewContainer.classList.add('form-active');
 }
+}
+
+reviewContainer.addEventListener('transitionend', function() {
+  bookSubForm.classList.remove('form-transition');
+  bookSubForm.classList.remove('form-visible');
+  bookSubForm.classList.remove('form-hidden');
+}, false);
 
 //This function is called when thumb up or down is clicked to hide the thumb up or down buttons to prevent repeat voting
 function hideThumbs(){
