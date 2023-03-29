@@ -164,6 +164,7 @@ a.buttons{
 
 #hiddenForm{
     display: none;
+    margin-bottom: 10px;
 }
 
 #editForm{
