@@ -327,6 +327,18 @@ a.buttons{
     font-size: 1.8rem;
   }
 
+  #userReviewDiv {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px;
+    border-radius: 16px;
+    max-width: 45%;
+    height: 10%;
+    background-color: white;
+    border: 0.5px solid black;
+    transition: 2s all;
+  }
+
 /* End of section for user profile page CSS */
 
 #delete-button {
@@ -344,6 +356,10 @@ a.buttons{
     width: 120px;
     height: 120px;
     animation: spin 2s linear infinite;
+  }
+
+  #footerPlaceholder{
+    margin-top: 35px;
   }
   
   @keyframes spin {
