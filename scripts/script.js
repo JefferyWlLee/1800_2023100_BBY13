@@ -7,12 +7,22 @@ const thumb_Down = document.getElementById("thumbDown");
 thumb_Up.addEventListener("click", ()=> {
   handleThumbClick(true);
   hideThumbs();
+  showReviewContainer();
 });
 
 thumb_Down.addEventListener("click", ()=> {
   handleThumbClick(false);
   hideThumbs();
+  showReviewContainer()
 });
+
+//This function changes the CSS display property of review container element to flex after a 0.4s delay
+function showReviewContainer() {
+  const reviewContainer = document.getElementById("reviewContainer");
+  setTimeout(() => {
+    reviewContainer.style.display = "flex";
+  }, 400); 
+}
 
 //This function is called when thumb up or down is clicked to hide the thumb up or down buttons to prevent repeat voting
 function hideThumbs(){
