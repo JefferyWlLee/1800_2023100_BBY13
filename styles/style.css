@@ -137,6 +137,7 @@ a.buttons{
     transition: 0.6s all;
     border-radius: 12px;
     margin-top: 12px;
+    margin-bottom: 10px;
 }
 
 #editBtn-UserProfile:hover, #confirmChangesBtn:hover{
@@ -163,6 +164,7 @@ a.buttons{
 
 #hiddenForm{
     display: none;
+    margin-bottom: 10px;
 }
 
 #editForm{
@@ -252,6 +254,11 @@ a.buttons{
     justify-content: center;
     padding-left: 25%;
     padding-right: 25%;
+}
+
+#reviewText {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-visible {
