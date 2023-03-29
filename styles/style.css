@@ -254,6 +254,11 @@ a.buttons{
     padding-right: 25%;
 }
 
+#reviewText {
+    display: flex;
+    flex-direction: column;
+}
+
 .form-visible {
     display: block;
 }
