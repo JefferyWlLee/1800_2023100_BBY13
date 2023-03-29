@@ -247,11 +247,33 @@ a.buttons{
 }
 
 #reviewContainer{
-    display: flex;
     flex-direction: column;
     justify-content: center;
     padding-left: 25%;
     padding-right: 25%;
+}
+
+.form-visible {
+    display: block;
+}
+
+.form-active {
+    display:block;
+    opacity: 1;
+}
+
+.form-transition.form-visible {
+    display: block;
+    opacity: 1;
+}
+
+.form-transition {
+    transition: opacity 1.1s ease;
+}
+
+.form-hidden {
+    display: block;
+    opacity: 0;
 }
 
 #confirmReview {
@@ -277,6 +299,10 @@ a.buttons{
 
   #writeReview{
     padding: 8px;
+    max-width: 500px;
+    min-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   #contactBtn{
