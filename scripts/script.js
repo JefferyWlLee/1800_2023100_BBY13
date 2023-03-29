@@ -4,6 +4,9 @@ const usersCollection = firebase.firestore().collection("users");
 const thumb_Up = document.getElementById("thumbUp");
 const thumb_Down = document.getElementById("thumbDown");
 const reviewContainer = document.getElementById("reviewContainer");
+const userReviewDiv = document.getElementById("userReviewDiv");
+const reviewTextArea = document.getElementById("writeReview");
+const confirmBtn = document.getElementById("confirmReview");
 
 thumb_Up.addEventListener("click", ()=> {
   handleThumbClick(true);
@@ -16,6 +19,12 @@ thumb_Down.addEventListener("click", ()=> {
   hideThumbs();
   showReviewContainer()
 });
+
+confirmBtn.addEventListener("click", ()=> {
+  saveReviewText();
+  clearText();
+})
+
 
 // This function will add or remove classes to review container depending on which classes it already has.
 // Along with the "transition end" event listener, it craetes a "fade in effect" for the review container element
@@ -36,6 +45,7 @@ reviewContainer.addEventListener('transitionend', function() {
   reviewContainer.classList.remove('form-visible');
   reviewContainer.classList.remove('form-hidden');
 }, false);
+
 
 //This function is called when thumb up or down is clicked to hide the thumb up or down buttons to prevent repeat voting
 function hideThumbs(){
@@ -279,3 +289,19 @@ getUserRating().then(userRating => {
 });
 
 
+function saveReviewText() {
+
+    let userID = localStorage.getItem("userID");
+    let reviewText = reviewTextArea.value;
+    console.log(reviewText);
+    const userDocRef = db.collection("users").doc(userID);
+    userDocRef.update({ "Reviews": reviewText });
+    userReviewDiv.innerHTML = reviewText;
+    reviewTextArea.style.display = "none";
+    confirmBtn.style.display = "none";
+
+}
+
+function clearText(){
+  reviewTextArea.innerText = "";
+}
