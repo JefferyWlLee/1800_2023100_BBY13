@@ -17,7 +17,7 @@ thumb_Down.addEventListener("click", ()=> {
 });
 
 // This function will add or remove classes to review container depending on which classes it already has.
-// Along with the transition end even listener, it craetes a "fade in effect" for the review container element
+// Along with the "transition end" event listener, it craetes a "fade in effect" for the review container element
 const reviewContainer = document.getElementById("reviewContainer");
 function showReviewContainer() {
   if (reviewContainer.classList.contains("form-active")) {
@@ -32,9 +32,9 @@ function showReviewContainer() {
 }
 
 reviewContainer.addEventListener('transitionend', function() {
-  bookSubForm.classList.remove('form-transition');
-  bookSubForm.classList.remove('form-visible');
-  bookSubForm.classList.remove('form-hidden');
+  reviewContainer.classList.remove('form-transition');
+  reviewContainer.classList.remove('form-visible');
+  reviewContainer.classList.remove('form-hidden');
 }, false);
 
 //This function is called when thumb up or down is clicked to hide the thumb up or down buttons to prevent repeat voting
