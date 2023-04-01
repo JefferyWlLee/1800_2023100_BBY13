@@ -12,7 +12,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/style2.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -38,11 +38,12 @@
         </em>
         <div>User Rating</div>
         <div id="starContainer"></div>
+        
         <div id="reviewContainer" class="form-hidden">
             <div id="reviewText">
                 <div id="instructUser">Please leave a short review of your interactions with this user</div>
                 <textarea type="text" maxlength="200" placeholder="This user was..." id="writeReview"></textarea>
-                <button id="confirmReview">Confirm</button>
+                <button class="btn btn-primary" id="confirmReview">Confirm</button>
             </div>
         </div>
         <div id="rateUser">
@@ -50,7 +51,7 @@
             <img src="./images/thumbs-down.svg" id="thumbDown" alt="">
         </div>
         <div>
-            <button id="contactBtn">Contact</button>
+            <button class="btn btn-primary" id="contactBtn">Contact</button>
         </div>
     </div>
     <br>
