@@ -1,38 +1,35 @@
-<nav id="topBar" class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="loggedin_main.html">
-            <img src="./images/hand.svg.svg" height="36">
-            Here 2 Share</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="./images/hand.svg.svg" height="36" alt="Here 2 Share Logo">
+            Here 2 Share
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="col d-flex justify-content-end" id="navbarSupportedContent">
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <form class="d-flex flex-row justify-content-end align-items-center">
+                <input class="form-control me-2 border border-purple rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-purple rounded-pill" type="submit">Search</button>
             </form>
-        </div>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Menu
-            </button>
-            <ul class="dropdown-menu" id="navDropDown" aria-labelledby="dropdownMenu2">
-                <li>
-                    <a class="buttons" href="my_user_profile.html">
-                        <button class="dropdown-item" type="button">Profile</button>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Menu
                     </a>
-                </li>
-                <li>
-                    <a class="buttons" href="contact.html">
-                        <button class="dropdown-item" type="button">FAQ</button>
-                    </a>
-                </li>
-                <li>
-                    <button class="dropdown-item" type="button" onclick="logout()">logout</button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="my_user_profile.html">Profile</a></li>
+                        <li><a class="dropdown-item" href="contact.html">FAQ</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item" type="button" onclick="logout()">Logout</button></li>
+                    </ul>
                 </li>
             </ul>
         </div>
+        <div>
+            <img id="user-profile-picture" src="" height="36" alt="Here 2 Share Logo">
+        </div>
     </div>
 </nav>
+<script src="./scripts/show_image.js"></script>
+<script src="./scripts/main.js"></script>
