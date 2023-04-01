@@ -6,7 +6,7 @@ This is a browser based webb application that helps people avoid situations wher
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
 * Jeen Namkung
-* Yousuf Rabani - Chem Eng undergraduate, got into programming 6 months ago
+* Yousuf Rabani - Excited to  help create a project we can be proud of.
 * Jeffery Lee - 1 Year plus co-op in CNC Machining
 	
 ## 3. Technologies and Resources Used
