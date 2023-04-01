@@ -29,7 +29,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/style2.css">
 
 </head>
 
@@ -37,20 +37,32 @@
     <!-- nav bar -->
     <nav id="navbarPlaceholder"></nav>
     <div class="container">
-        <h1><span id="title">title</span></h1>
-        <div class="position-relative">
-            <img class="post-img responsive" src="" alt="post photo">
-            <button id="edit-button" class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="redirect()" >edit</button>
-            <button id="delete-button" class="btn btn-primary position-absolute m-3" onclick="deletePost()" >Delete</button>
-
-           <p id="time-here"></p>
-           <p id="name-here"></p>
+        <div class="post-header">
+          <h1 class="post-title" id="title">Title</h1>
+          <div class="post-actions">
+            <button class="btn btn-primary" id="edit-button" onclick="redirect()">Edit</button>
+            <button class="btn btn-primary" id="delete-button" onclick="deletePost()">Delete</button>
+          </div>
         </div>
-        <div id="description-here">
-            
+        <div class="post-image">
+          <img class="post-img" src="" alt="Post photo">
         </div>
-        <div id="location-here"></div>
-    </div>
+        <div class="post-meta">
+          <p class="post-time" id="time-here">Time</p>
+          <p class="post-name" id="name-here">Name</p>
+        </div>
+        <div class="post-content">
+          <div class="post-description" id="description-here">
+            <h2 class="post-subtitle">Description</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisl eu nisi venenatis tincidunt. Quisque porttitor nulla vel leo consequat blandit. Suspendisse tincidunt aliquam massa in rutrum.</p>
+          </div>
+          <div class="post-location" id="location-here">
+            <h2 class="post-subtitle">Location</h2>
+            <p>123 Main Street, Anytown, USA</p>
+          </div>
+        </div>
+      </div>
+      
     
     <!-- copyright footer -->
     <nav id="footerPlaceholder"></nav>
