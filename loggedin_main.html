@@ -27,7 +27,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 		<!-- Link to styles of your own -->
-		<link rel="stylesheet" href="./styles/style.css" />
+		<link rel="stylesheet" href="./styles/style2.css" />
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -63,22 +63,19 @@
     </div>
 </template>
 
-<button type="button"  onclick="window.location.href='add_post_form.html'" style="width:25px;height:25px;border:0px;">
-	<img src="./images/download.png" href="add_post_form.html" style="width:25px;height:25px;">
-</button>
-
 		<div class="px-4 py-5 my-5 text-center">
 			<img class="d-block mx-auto mb-4" src="./images/hand.svg.svg" alt="" width="72" height="57" />
 
 			<div class="col-lg-6 mx-auto">
 				<p class="lead mb-4">Join a community of generous helpers and receive or give help today!</p>
-				<h2>Life is better, together.</h2>
+				<h2 style="text-align: center !important;">Life is better, together.</h2>
 				<div class="container-fluid bg-light text-dark p-5">
 					<div class="container bg-light p-5">
 						<h1 class="display-4">Welcome <span id="name-goes-here"></span>!</h1>
 						<hr />
 					</div>
 				</div>
+				<button class="btn btn-purple rounded-pill" type="submit"><a href="add_post_form.html">Add Post</a></button>
 			</div>
 		</div>
 
@@ -96,7 +93,7 @@
 				<div id="posts-go-here" class="row row-cols-auto"></div>
 			</div>
 		</div>
-
+		<br><br>
 		<!-- copyright footer -->
 		<nav id="footerPlaceholder"></nav>
 
@@ -109,5 +106,6 @@
 		<script src="./scripts/firebaseAPI_here2share.js"></script>
 		<script src="./scripts/skeleton.js"></script>
 		<script src="./scripts/main.js"></script>
+		
 	</body>
 </html>
