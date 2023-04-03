@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="loggedin_main.html">
+        <a class="navbar-brand" href="loggedin_main.html" onclick="showUserPicture()">
             <img src="./images/hand.svg.svg" height="36" alt="Here 2 Share Logo">
             Here 2 Share
         </a>
@@ -8,10 +8,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <form class="d-flex flex-row justify-content-end align-items-center">
-                <input class="form-control me-2 border border-purple rounded-pill" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-purple rounded-pill" type="submit">Search</button>
-            </form>
+            <div class="d-flex flex-row justify-content-end align-items-center">
+                <input id="search-input" class="form-control me-2 border border-purple rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-purple rounded-pill" onclick="searchBar()">Search</button>
+            </div>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
