@@ -305,3 +305,23 @@ function saveReviewText() {
 function clearText(){
   reviewTextArea.innerText = "";
 }
+
+const userName = localStorage.getItem("userName");
+const usersRef = db.collection('users');
+var email = "";
+usersRef.where("name", "==", userName)
+.get()
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      
+      email = doc.data().email;
+      console.log(email);
+      
+    });
+    
+    const anchor = document.getElementById('contactBtn');
+    anchor.href = `mailto:${email}`;
+  })
+  .catch((error) => {
+    console.log('Error getting users:', error);
+  });
