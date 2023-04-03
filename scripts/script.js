@@ -20,10 +20,7 @@ thumb_Down.addEventListener("click", ()=> {
   showReviewContainer()
 });
 
-confirmBtn.addEventListener("click", ()=> {
-  saveReviewText();
-  clearText();
-})
+
 
 
 // This function will add or remove classes to review container depending on which classes it already has.
@@ -306,6 +303,33 @@ function clearText(){
   reviewTextArea.innerText = "";
 }
 
+const reviewSection = document.getElementById('reviewSection');
+const confirmReviewBtn = document.getElementById('confirmReview');
+
+function showReview(){
+  reviewSection.classList.remove("form-hidden");
+  reviewSection.classList.add('form-active');
+  reviewContainer.style.display = 'none';
+  reviewSection.style.display = 'block';
+  var review = "";
+usersRef.where("name", "==", userName)
+.get()
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      
+      review = doc.data().Reviews;
+      console.log(review);
+      
+    });
+    const rev = document.getElementById('reviewList');
+    rev.innerHTML = `${review}`;
+  })
+  .catch((error) => {
+    console.log('Error getting users:', error);
+  });
+}
+
+
 const userName = localStorage.getItem("userName");
 const usersRef = db.collection('users');
 var email = "";
@@ -325,3 +349,13 @@ usersRef.where("name", "==", userName)
   .catch((error) => {
     console.log('Error getting users:', error);
   });
+
+  confirmBtn.addEventListener("click", ()=> {
+    saveReviewText();
+    clearText();
+    showReview();
+  })
+
+
+
+
