@@ -152,3 +152,71 @@ function saveUserNameToLocalStorage(event) {
       })
       
     })}
+
+    
+// This function works by collecting the string typed into the "search-input" element and comparing it to the "posts" collection
+// on firestore database, checking against the "title" field of each "post" document, and displaying those as cards using the code
+// from the body of "displayCardsDynamically() function"
+  function searchBar(){
+
+    var keyword = document.getElementById("search-input").value;
+    filter("null");
+    db.collection("posts").where("title", ">=", keyword)
+    .where("title", "<=", keyword + "\uf8ff")
+    .get()
+    .then((querySnapshot) => {
+        console.log("Number of documents returned:", querySnapshot.size);
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data().title);
+          var title = doc.data().title;       // get value of the "name" key
+          var time = doc.data().time_posted.toDate().toLocaleDateString(); //gets firebase time stamp
+          var docID = doc.id; //gets doc id
+          var owner = doc.data().owner; //gets user.uid
+          let image = doc.data().image; // gets image url
+          let tags = doc.data().tag //gets the tags associated with the post
+          tags = tags.toString();
+          let newcard = postTemplate.content.cloneNode(true); // references and clones card template
+          var helping = doc.data().helping; //is the poster looking for help or giving help?
+          newcard.querySelector('.card-title').innerHTML = title;
+          newcard.querySelector('.card-length').innerHTML = time;
+          newcard.querySelector('.card-image').src = image;
+          newcard.querySelector('.card-help').innerHTML = helping;
+          newcard.querySelector('.tags-go-here').innerHTML = "tags: " + tags;
+          // Changed querySelector paramter from 'a' to '.card-Button' - Yousuf '.card-text'
+          newcard.querySelector('.card-Button').href = "each_post.html?docID="+docID;
+          db.collection("users").doc(owner).get().then(userDoc => {
+              //get username of whoever made the post 
+              var userName = userDoc.data().name;
+              let currentUser = firebase.auth().currentUser;
+
+              let nameElement = newcard.querySelector('.card-text');
+              let nameLinkElement = document.createElement('a');
+              nameLinkElement.innerHTML = "Posted By: " + userName;
+
+              //Check if the current user is the owner of the post
+              if (owner === currentUser.uid) {
+                  nameLinkElement.href = "my_user_profile.html";
+              } else {
+                  nameLinkElement.href = "other_userProfile.html?userId=" + owner;
+              }
+
+              nameElement.innerHTML = "";
+              nameElement.appendChild(nameLinkElement);
+              
+              // newcard.querySelector('.card-text').innerHTML = "Posted By: " + userName;
+
+              /* Note to Jeff: This line adds a click event listeenr to each p element created which calls 
+                 saveUserNameToLocalStorage function when clicked - Yousuf */  
+              newcard.querySelector('.card-text').addEventListener("click",  (event)=> {
+                  saveUserNameToLocalStorage(event);
+              });
+              
+
+              //attach to gallery, Example: "hikes-go-here"
+              document.getElementById("posts-go-here").appendChild(newcard);
+      });
+    })
+    
+  })
+
+  }
