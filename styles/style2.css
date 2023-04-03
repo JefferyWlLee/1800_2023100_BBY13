@@ -667,6 +667,7 @@ h3 {
       display: flex;
       flex-direction: row;
       justify-content: center;
+      margin-bottom: 15px;
   }
   
   .ratingStars {
@@ -768,7 +769,8 @@ h3 {
   }
   
   #userprofile > div{
-      margin: 30px;
+      margin-top: 0px;
+      margin-bottom: 20px; 
       font-family: 'Roboto', sans-serif;
   }
   
@@ -786,7 +788,8 @@ h3 {
   align-items: center;
 }
 #otherUserprofile-name {
-  font-size: 1.2rem;
+  font-size: 2.8rem;
+  font-weight: 600;
 }
 #otherUserprofile-img {
   height: 150px;
@@ -814,9 +817,10 @@ h3 {
 /* Adjust styles for screens with a width of 576px or less */
 @media (max-width: 576px) {
 #otherUserprofile-img {
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
 }
+
 #userReviewDiv {
   max-width: 90%;
 }
