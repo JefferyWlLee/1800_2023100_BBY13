@@ -20,6 +20,8 @@ function showUserPicture() {
     }
 });
 }
-window.onload = showUserPicture;
+document.addEventListener("DOMContentLoaded", function() {
+    showUserPicture();
+  });
 
 //done by yousuf
