@@ -11,6 +11,7 @@ List team members and/or short bio's here...
 	
 ## 3. Technologies and Resources Used
 JavaScript HTML5 CSS3 Firebase
+<br>
 [![My Skills](https://skillicons.dev/icons?i=js,html,css,firebase)](https://skillicons.dev)
 
 ## 4. Complete setup/installion/usage
