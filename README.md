@@ -1,20 +1,17 @@
-# Project Title
+# Here2Share 
 
 ## 1. Project Description
-This is a browser based webb application that helps people avoid situations where they end up without essential supplies or basic needs during extreme weather events
+
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
-* Jeen Namkung
-* Yousuf Rabani - Excited to  help create a project we can be proud of.
-* Jeffery Lee - 1 Year plus co-op in CNC Machining
+* Jeen Namkung - Resident handy man, squishing the bugs and making the templates
+* Yousuf Rabani - Certified UX/UI don
+* Jeffery Lee - Backend engineer in the making
 	
 ## 3. Technologies and Resources Used
-List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
-* HTML, CSS, JavaScript
-* Bootstrap 5.0 (Frontend library)
-* Firebase 8.0 (BAAS - Backend as a Service)
-* ...
+JavaScript HTML5 CSS3 Firebase
+[![My Skills](https://skillicons.dev/icons?i=js,html,css,firebase)](https://skillicons.dev)
 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
@@ -41,18 +38,37 @@ Content of the project folder:
 ```
  Top level of project folder: 
 ├── .gitignore               # Git ignore file
-├── index.html               # landing HTML file, this is what users see when you come to url
+├── add_post_form.html       # page for creating posts
+├── contact.html             # Contact/FAQs page
+├── each_post.html           # template for created posts
+├── editPost.html            # Page for editing posts
+├── loggedin_main.html       # Main landing page for logged in users
+├── loginPage.html           # Login page for users arriving at website without being logged in
+├── my_user_profile.html     # Page for user's own profile
+├── ThankYou.html            # Temporary page for after a new post is created
+├── unloggedin_main.html     # Main landing page if user is not logged in
 └── README.md
 
 It has the following subfolders and files:
 ├── .git                     # Folder for git repo
-├── images                   # Folder for images
-    /blah.jpg                # Acknowledge source
+├── images                   # Folder for vriousimage assets
 ├── scripts                  # Folder for scripts
-    /blah.js                 # 
+    /authentication.js       # Script for handling login authentication
+    /each_post.js            # Script for handling post creation
+    /editPost.js             # Script for handling editing of posts
+    /main.js                 # Script for handling main page operations
+    /profile.js              # Script for handling profile page operations
+    /script.js               # Script for handling various operations
+    /show_images.js          # Script for handling profile image on navbar
+    /skeleton.js             # Script for handling navbar and footer loading
+    /submitPost.js           # Script for handling post submission
 ├── styles                   # Folder for styles
-    /blah.css                # 
-
+    /style.css               # Initial CSS folder, now kept as backup
+    /style2.css              # Main CSS folder handling all non-bootsrap styling, created after revamping entire look
+├── text                     # Folder for holding navbar and footer templates
+    /footer.html             # Footer template
+    /loggedin_nav.html       # Navbar template for logged in users
+    /unloggedin_nav.html     # Navbar template for users not logged in
 
 
 ```
