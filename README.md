@@ -1,7 +1,7 @@
-<h1 align=centre> Here2Share </h1>
-<a align=centre>
-<img src="./images/hand.svg.svg" width=50px height=50px alt="">
-</a>
+<h1 align="centre"> Here2Share 
+    <img src="./images/hand.svg.svg" width=50px height=50px alt=""/>
+</h1>
+
 ## 1. Project Description
 
 
