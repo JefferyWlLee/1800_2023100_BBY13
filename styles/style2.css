@@ -930,5 +930,11 @@ to {
     background-color: #9B59B6;
 }
 
+#edit-button{
+  display:none;
+}
+#delete-button{
+  display:none;
+}
 
   
