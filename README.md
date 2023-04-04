@@ -1,6 +1,6 @@
-# <p align="centre"> Here2Share </p>
-<a align="centre">
-<img src="./images/hand.svg.svg" alt="">
+<h1 align=centre> Here2Share </h1>
+<a align=centre>
+<img src="./images/hand.svg.svg" width=50px height=50px alt="">
 </a>
 ## 1. Project Description
 
