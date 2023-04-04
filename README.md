@@ -1,5 +1,7 @@
-# Here2Share 
-
+# <p align="centre"> Here2Share </p>
+<a align="centre">
+<img src="./images/hand.svg.svg" alt="">
+</a>
 ## 1. Project Description
 
 
