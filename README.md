@@ -1,20 +1,31 @@
-<h1 align="centre"> Here2Share 
-    <img src="./images/hand.svg.svg" width=50px height=50px alt=""/>
+<h1 align="center"> Here2Share 
 </h1>
-
+    <p align="center"> 
+    	<img src="./images/hand.svg.svg" width=75px height=75px alt="">
+    </p>	
 ## 1. Project Description
 
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
-* Jeen Namkung - Resident handy man, squishing the bugs and making the templates
+* Jeen Namkung - Resident exterminator, squishing the bugs and making the templates
 * Yousuf Rabani - Certified UX/UI don
 * Jeffery Lee - Backend engineer in the making
 	
 ## 3. Technologies and Resources Used
-JavaScript HTML5 CSS3 Firebase
+
+<p align="center" > 
+JavaScript | HTML5 | CSS3 | Firebase | BootStrap | Git
 <br>
-[![My Skills](https://skillicons.dev/icons?i=js,html,css,firebase)](https://skillicons.dev)
+<br>
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=javascript,html,css,firebase,bootstrap,git" />
+  </a>
+</p>
+</p>
+
+
 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
@@ -54,7 +65,7 @@ Content of the project folder:
 
 It has the following subfolders and files:
 ├── .git                     # Folder for git repo
-├── images                   # Folder for vriousimage assets
+├── images                   # Folder for various image assets
 ├── scripts                  # Folder for scripts
     /authentication.js       # Script for handling login authentication
     /each_post.js            # Script for handling post creation
