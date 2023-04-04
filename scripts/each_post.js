@@ -23,7 +23,7 @@ function displayPostInfo() {
                 } else {
                     postOwnerLink = "other_userProfile.html?userId=" + postOwner;
                 }
-                document.getElementById("name-here").innerHTML = "Posted By <a href=\"" + postOwnerLink + "\">" + username + "</a>";
+                document.getElementById("name-here").innerHTML = "Posted By <a id=\"targetName\" href=\"" + postOwnerLink + "\">" + username + "</a>";
                 document.getElementById("description-here").innerHTML = postDescription;
                 document.getElementById("location-here").innerHTML = "Location: " + postLocation;
                 document.getElementById("time-here").innerHTML = postedTime;
@@ -82,3 +82,59 @@ function deletePost() {
         return;
     }
 }
+
+
+// Adding functions from main.js script
+function saveUserNameToLocalStorage(event) {
+    const postElement = event.target;
+    const userName = postElement.innerHTML;
+    localStorage.setItem('userName', userName);
+    console.log("save user name to local storage function called!")
+  }
+  
+  const targetName = document.getElementById("targetName");
+    
+  targetName.addEventListener("click", (event) => {
+    saveUserNameToLocalStorage(event);
+    saveUserIdToLocal();
+  });
+
+  // This function takes the user name saved in local storage, searches our firestore database for matching Name field in a user 
+// document in the users collection, and saves the id of that user to local storage as "userID"
+function saveUserIdToLocal() {
+
+    const userName = localStorage.getItem("userName");
+    return db.collection("users")
+      .where("name", "==", userName)
+      .get()
+      .then(querySnapshot => {
+        if (!querySnapshot.empty) {
+          const userId = querySnapshot.docs[0].id;
+          localStorage.setItem("userID", userId);
+          return userId;
+        }
+        return null;
+      })
+      .catch(error => {
+        // This handles any errors that can psosibly occur while querying firestore 
+        console.error("Error getting user ID:", error);
+        return null;
+      });
+  }
+  
+  // Here we call the function when page is loaded
+  saveUserIdToLocal().then(userId => {
+    console.log("User ID:", userId);
+    localStorage.setItem("userID", userId);
+  }).catch(error => {
+    console.error("Error getting user ID:", error);
+  });
+
+
+//   function injectUserNameIntoProfile() {
+//     const userName = localStorage.getItem('userName');
+//     console.log("name saved to local storage: " + userName);
+//     const profileNameElement = document.getElementById('otherUserprofile-name');
+//     profileNameElement.textContent = userName;
+//   }
+//   injectUserNameIntoProfile();
