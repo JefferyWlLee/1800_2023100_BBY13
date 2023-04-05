@@ -255,6 +255,11 @@ body {
   max-width: 800px;
 }
 
+#newPostBtn{
+  width: 200px;
+  height: 60px;
+}
+
 .btn-secondary {
   margin: 5px;
   border-radius: 20px;
