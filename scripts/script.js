@@ -191,6 +191,16 @@ updateUserProfile()
     console.log("User profile updated!");
   });
 
+const profileImg = document.getElementById("otherUserprofile-img");
+
+profileImg.onload = () => {
+  console.log("Profile image loaded!");
+  updateUserProfile()
+    .then(() => {
+      console.log("User profile updated!");
+    });
+};
+
 // This function has boolean paramter, if true, it increments the "ThumbUp-Count" field in the user document on firebase, otherwise
 // it increments the ThumbDown-Count. It then calls calculateUserRating function we defined earlier to calc user rating using these two
 // numbers, it then calls the displayStars function (which we haven't defined yet) to display the rating as stars on the user profile page. 
