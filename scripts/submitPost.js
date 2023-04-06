@@ -133,7 +133,7 @@ function uploadPic(postDocID){
         })
     })
     .catch((error) => {
-        console.log("Error uploading to cloud server")
+        console.log("Error uploading to cloud server" + error)
     })
 }
 

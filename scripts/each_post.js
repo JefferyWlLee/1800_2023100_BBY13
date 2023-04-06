@@ -75,7 +75,7 @@ function deletePost() {
         let ID = params.searchParams.get( "docID" );
         db.collection("posts").doc(ID).delete().then(() => {
             console.log("Document successfully deleted!");
-            window.location.href = "thankyou.html";
+            window.location.href = "ThankYou.html";
         })
         
     } else {
