@@ -10,7 +10,7 @@
 List team members and/or short bio's here...
 
 - Jeen Namkung - Resident exterminator, squishing the bugs and making the templates
-- Yousuf Rabani - Certified UX/UI don
+- Yousuf Rabani - Wannabe UX/UI don
 - Jeffery Lee - Backend engineer in the making
 
 ## 3. Technologies and Resources Used
@@ -47,7 +47,7 @@ Here are some known bugs:
 
 What we'd like to build in the future:
 
-- Representing the boundaries of the area where one lives on a map.
+- Representing the boundaries of the area where one lives on a map using a geoLocation API.
 - Implementing a live chat feature to enable conversation without relying on email.
 
 ## 7. Contents of Folder
