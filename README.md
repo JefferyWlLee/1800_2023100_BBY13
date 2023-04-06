@@ -5,13 +5,14 @@
     </p>	
 ## 1. Project Description
 
-
 ## 2. Names of Contributors
-List team members and/or short bio's here... 
-* Jeen Namkung - Resident exterminator, squishing the bugs and making the templates
-* Yousuf Rabani - Certified UX/UI don
-* Jeffery Lee - Backend engineer in the making
-	
+
+List team members and/or short bio's here...
+
+- Jeen Namkung - Resident exterminator, squishing the bugs and making the templates
+- Yousuf Rabani - Certified UX/UI don
+- Jeffery Lee - Backend engineer in the making
+
 ## 3. Technologies and Resources Used
 
 <p align="center" > 
@@ -25,32 +26,36 @@ JavaScript | HTML5 | CSS3 | Firebase | BootStrap | Git
 </p>
 </p>
 
-
-
 ## 4. Complete setup/installion/usage
-State what a user needs to do when they come to your project.  How do others start using your code or application?
+
+State what a user needs to do when they come to your project. How do others start using your code or application?
 Here are the steps ...
-* ...
-* ...
-* ...
+
+- ...
+- ...
+- ...
 
 ## 5. Known Bugs and Limitations
+
 Here are some known bugs:
-* ...
-* ...
-* ...
+
+- ...
+- ...
+- ...
 
 ## 6. Features for Future
+
 What we'd like to build in the future:
-* ...
-* ...
-* ...
-	
+
+- Representing the boundaries of the area where one lives on a map.
+- Implementing a live chat feature to enable conversation without relying on email.
+
 ## 7. Contents of Folder
+
 Content of the project folder:
 
 ```
- Top level of project folder: 
+ Top level of project folder:
 ├── .gitignore               # Git ignore file
 ├── add_post_form.html       # page for creating posts
 ├── contact.html             # Contact/FAQs page
@@ -86,5 +91,3 @@ It has the following subfolders and files:
 
 
 ```
-
-
