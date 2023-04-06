@@ -4,7 +4,7 @@
     	<img src="./images/hand.svg.svg" width=75px height=75px alt="">
     </p>	
 ## 1. Project Description
-
+* Here 2 Share is a community exchange app that  connects those who are in need of items or services to those who can fulfill those needs.
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
