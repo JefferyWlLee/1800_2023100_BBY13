@@ -11,11 +11,7 @@
 List team members and/or short bio's here...
 
 - Jeen Namkung - Resident exterminator, squishing the bugs and making the templates
-<<<<<<< HEAD
-- Yousuf Rabani - Wannabe UX/UI don
-=======
 - Yousuf Rabani - Certified UX/UI don
->>>>>>> c0b1b177eb9310f69a1212432c77bd096787b783
 - Jeffery Lee - Backend engineer in the making
 
 ## 3. Technologies and Resources Used
